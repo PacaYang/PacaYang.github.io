@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find your allergy personality with our interactive quiz. Learn about your allergies and how to manage them.">
+    <meta name="keywords" content="allergy quiz, allergy personality quiz, allergy knowledge test, allergy education, interactive quiz, allergy facts">
+    <title>Allergy Personality Quiz | Allergy Health Daily</title>
+    <script src="https://static.runconverge.com/pixels/3XNqiu.js" async></script>
+    <script>
+    window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
+    cvg({method:"track",eventName:"$page_load"});
+    cvg({ method: "link_domain", domain: "pacagen.com" });
+    </script>
+    
+    <!-- Prevent FOUC (Flash of Unstyled Content) -->
+    <style>
+        body { visibility: hidden; opacity: 0; transition: opacity 0.3s ease; }
+        .no-js body { visibility: visible; opacity: 1; }
+    </style>
+    <style>
+        #shopify-quiz {
+        font-family: inherit;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        }
+        #shopify-quiz h1,
+        #shopify-quiz h2,
+        #shopify-quiz h3 {
+        text-transform: none; /* Prevents text from being all caps */
+        text-align: center; /* Centers the text horizontally */
+        }
+        
+        .quiz-screen.results-screen .personality-description,
+        .quiz-screen.results-screen .celebrity-description,
+        .quiz-screen.results-screen .tips-section {
+        font-family: inherit;
+        }
+        
+        #shopify-quiz input[type="text"],
+        #shopify-quiz input[type="email"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box; /* This ensures padding doesn't add to width */
+        max-width: 100%;
+        }
+        
+        /* Ensure form groups have consistent width */
+        #shopify-quiz .form-group {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+        }
+        
+        /* Make sure any container divs don't restrict width */
+        #shopify-quiz .quiz-screen .form-group {
+        width: 100%;
+        display: block;
+        }
+        
+        .progress-container {
+        width: 100%;
+        height: 10px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+        height: 100%;
+        background-color: #4CAF50!important;
+        border-radius: 5px;
+        width: 0%;
+        transition: width 0.3s ease;
+        }
+        
+        .quiz-screen {
+        display: none;
+        text-align: center;
+        }
+        
+        .quiz-screen.active {
+        display: flex;
+        flex-direction: column;
+        }
+        
+        .quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Reduced from 15px */
+        margin: 20px 0; /* Reduced from 30px */
+        }
+        
+        .quiz-screen.results-screen {
+        text-align: left; /* Left align text on result screens */
+        }
+        
+        .quiz-screen.results-screen h2 {
+        text-align: center;
+        }
+        
+        .quiz-screen.results-screen .btn {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+        
+        .quiz-screen.results-screen .product-image,
+        .quiz-screen.results-screen .personality-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+        
+        /* ---- INLINE OPTION STYLING ---- */
+        .option {
+        padding: 8px 12px; /* Reduced padding */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;  /* Changed to flexbox */
+        align-items: center;
+        text-align: left;
+        }
+        
+        .option:hover {
+        background-color: #f9f9f9;
+        }
+        
+        .option.selected {
+        background-color: #e8f4fc;
+        border-color: #0077cc;
+        }
+        
+        /* Adjust the radio button styling */
+        .option input[type="radio"] {
+        margin: 0;
+        margin-right: 10px;
+        flex-shrink: 0;
+        }
+        
+        /* Style the label to align properly */
+        .option label {
+        margin: 0;
+        cursor: pointer;
+        display: inline-block;
+        }
+        /* ---- END INLINE OPTION STYLING ---- */
+        
+        .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+        }
+        
+        input[type="email"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        }
+        
+        .product-recommendation {
+        margin-top: 30px;
+        }
+        
+        .product-recommendation img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        }
+        
+        .product-recommendation {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        height: auto;
+        margin-top: 30px;
+        }
+        
+        .product-recommendation img {
+        max-width: 70%;
+        height: auto;
+        border-radius: 5px;
+        margin: 20px 0;
+        }
+        
+        .personality-description, .celebrity-description {
+        line-height: 1.6;
+        margin-bottom: 20px;
+        }
+        
+        .tips-section h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        }
+        
+        .tips-section ul {
+        padding-left: 20px;
+        margin-bottom: 0;
+        }
+        
+        .tips-section li {
+        margin-bottom: 10px;
+        }
+        
+        .tips-section li:last-child {
+        margin-bottom: 0;
+        }
+        
+        .product-image {
+        max-width: 300px;
+        margin: 30px auto;
+        display: block;
+        }
+        
+        .btn--full {
+        margin-top: 30px;
+        }
+        
+        .personality-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%; /* Reduces the image to 70% of its original width */
+        height: auto; /* Maintains the aspect ratio */
+        }
+        
+        /* BACK BUTTON STYLING OVERRIDE WITH SPECIFIC ID - NO !IMPORTANT */
+        #shopify-quiz #quiz-back-button.btn.btn-primary {
+        background-color: #faf4f3 !important;
+        background: #faf4f3 !important;
+        color: #044eb7 !important;
+        border: 1px solid #044eb7 !important;
+        --colorBtnPrimary: #faf4f3 !important;
+        text-transform: uppercase;
+        font-weight: medium;
+        font-size:calc(var(--typeBaseSize) + 10px);
+        width: 50%;
+        margin: 30px auto 0;
+        }
+        
+        #shopify-quiz #quiz-back-button.btn.btn-primary:hover {
+        background-color: #f8f9ff; /* Very light blue background */
+        color: #033b8a; /* Darker blue */
+        border-color: #033b8a;
+        }
+        
+        .button-group {
+        margin-top: 30px;
+        }
+        
+        .tips-section {
+        padding: 20px;
+        margin: 20px 0;
+        }
+        
+        .tips-section h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        }
+        
+        /* Remove default list styling */
+        .tips-section ol {
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style-type: none; /* Remove default numbers */
+        counter-reset: tip-counter; /* Initialize counter */
+        }
+        
+        /* Style for individual tip items */
+        .tips-section li {
+        background-color: #f0f0f0;
+        border-radius: 8px;
+        padding: 15px 15px 15px 50px; /* Extra left padding for number bubble */
+        margin-bottom: 15px;
+        position: relative; /* For positioning the number bubble */
+        line-height: 1.5;
+        }
+        
+        /* Number bubbles */
+        .tips-section li::before {
+        content: counter(tip-counter);
+        counter-increment: tip-counter;
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        width: 25px;
+        height: 25px;
+        background-color: #000;
+        color: #f0f0f0; /* Same as the box background */
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 14px;
+        }
+        
+        /* Last tip should not have a bottom margin */
+        .tips-section li:last-child {
+        margin-bottom: 0;
+        }
+        
+        /* Make sure strong text inside tips stands out */
+        .tips-section li strong,
+        .tips-section li b {
+        font-weight: bold;
+        }
+        
+        /* Fix for flexbox in older browsers for the number circles */
+        @supports not (display: flex) {
+        .tips-section li::before {
+          text-align: center;
+          line-height: 25px; /* Same as height */
+        }
+        }
+        
+        .social-share-buttons {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        }
+        
+        .share-btn-big {
+        color: white;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: calc(var(--typeBaseSize) + 10px);
+        width: 100%;
+        line-height: 1.42;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-repeat: no-repeat;
+        background-position: 16px center;
+        background-size: 24px;
+        padding-left: 48px;
+        padding: 0.75rem;
+        border: none;
+        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+        
+        .share-btn-big:hover {
+        color: white;
+        }
+        
+        /* Facebook */
+        .share-btn-big.facebook {
+        background-color: #1877F2;
+        }
+        
+        .share-btn-big.facebook:hover {
+        filter: brightness(0.9);
+        }
+        
+        /* Twitter (X) */
+        .share-btn-big.x {
+        background-color: #000000;
+        }
+        .share-btn-big.x:hover {
+          filter: brightness(0.9);
+        }
+        
+        /* Pinterest */
+        .share-btn-big.pinterest {
+        background-color: #E60023;
+        }
+        .share-btn-big.pinterest:hover {
+          filter: brightness(0.9);
+        }
+        
+        /* Instagram */
+        .share-btn-big.instagram {
+        background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+        color: white;
+        }
+        
+        /* Optional: Slight darken on hover */
+        .share-btn-big.instagram:hover {
+        filter: brightness(0.9);
+        }
+        .section-spacing {
+        margin-bottom: 2rem;
+        }
+        
+        .legal-terms {
+        text-align: left;
+        margin-top: 20px;
+      }
+      
+      .terms-checkbox {
+        display: flex;
+        align-items: flex-start;
+        cursor: pointer;
+      }
+      
+      .terms-checkbox input[type="checkbox"] {
+        margin-right: 10px;
+        margin-top: 3px;
+        flex-shrink: 0;
+      }
+      
+      .terms-checkbox span {
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      
+      #user-phone {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+        max-width: 100%;
+      }
+
+      #start-quiz-button {
+        background-color: #4CAF50!important;
+        color: white!important;
+        border-radius: 999px!important;
+        padding: 12px 24px!important;
+        font-size: 16px!important;
+        font-weight: 500!important;
+      }
+
+      .next-button {
+        background-color: #4CAF50!important;
+        color: white!important;
+        border-radius: 999px!important;
+        padding: 12px 24px!important;
+        font-size: 16px!important;
+        font-weight: 500!important;
+        width: 50%;
+        margin: 0 auto;
+      }
+        
+        </style>
+    <script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+    <main>
+        <div id="shopify-quiz">
+            <!-- Progress bar -->
+            <div class="progress-container">
+              <div class="progress-bar" id="quiz-progress"></div>
+            </div>
+          
+            <!-- Quiz content area -->
+            <div class="quiz-content">
+              <!-- Initial welcome screen -->
+              <div class="quiz-screen active" id="welcome-screen">
+                <h1>Discover Your Allergy Personality</h1>
+                <p>Everyone has their own way of navigating life with allergies. Take this quiz to uncover your unique allergy personality, find your celebrity allergy personality match, and get recommendations tailored just for you.</p>
+                <button class="btn btn--full add-to-cart" id="start-quiz-button">Get Started</button>
+              </div>
+          
+
+              <!-- Question 0 - Name Request -->      
+              <div class="quiz-screen" id="name-question">
+                <h2>Let's get to know each other. What's your first name?</h2>
+                <div class="form-group">
+                  <input type="text" id="user-name" name="user-name" placeholder="Enter your name" required="">
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+              </div>
+          
+              <!-- Question 1 - Allergy Track Selection -->
+              <div class="quiz-screen" id="question-1">
+                <h2>Question 1: It's a beautiful Saturday afternoon. You're at a friend's gathering when your allergy symptoms suddenly flare up. Looking around, what's most likely the culprit?</h2>
+                <div class="quiz-options">
+                  <div class="option" data-track="cat">
+                    <input type="radio" name="q1" id="q1-option1" value="cat">
+                    <label for="q1-option1">Your friend's cat lounging on the windowsill</label>
+                  </div>
+                  <div class="option" data-track="dog">
+                    <input type="radio" name="q1" id="q1-option2" value="dog">
+                    <label for="q1-option2">The golden retriever resting at your feet</label>
+                  </div>
+                  <div class="option" data-track="dust">
+                    <input type="radio" name="q1" id="q1-option3" value="dust">
+                    <label for="q1-option3">The bookshelf to your left that hasn't been dusted in months</label>
+                  </div>
+                  <div class="option" data-track="pollen">
+                    <input type="radio" name="q1" id="q1-option4" value="pollen">
+                    <label for="q1-option4">The open windows letting in spring air and pollen</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+              </div>
+          
+              <!-- CAT TRACK QUESTIONS -->
+              <!-- Cat Track: Question 2 -->
+              <div class="quiz-screen track-specific" id="cat-question-2" data-track="cat">
+                <h2>Question 2: You're browsing a local bookstore when the owner's cat appears from behind the counter and starts walking toward you. What happens next?</h2>
+                <div class="quiz-options">
+                  <div class="option">
+                    <input type="radio" name="cat-q2" id="cat-q2-option1" value="avoid">
+                    <label for="cat-q2-option1">You immediately make your way to the exit, book shopping can wait</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="cat-q2" id="cat-q2-option2" value="tolerate">
+                    <label for="cat-q2-option2">You stay but keep a safe distance, occasionally glancing at the cat from afar</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="cat-q2" id="cat-q2-option3" value="interact">
+                    <label for="cat-q2-option3">You can't resist reaching down to give it a quick pet, even knowing you'll pay for it later</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+              </div>
+          
+              <!-- Cat Track: Question 3 -->
+          <div class="quiz-screen track-specific" id="cat-question-3" data-track="cat">
+            <h2>Question 3: Your close friend just moved into a new apartment and invites you over for a housewarming dinner, but you saw on her Instagram Story that she recently rescued 2 cats. How do you respond?</h2>
+            <div class="quiz-options">
+              <div class="option">
+                <input type="radio" name="cat-q3" id="cat-q3-option1" value="option1">
+                <label for="cat-q3-option1">You tell her that you're super allergic to cats, and that it might be best to hang out somewhere else</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="cat-q3" id="cat-q3-option2" value="option2">
+                <label for="cat-q3-option2">You take an allergy pill discreetly in the bathroom and try to enjoy the evening, while keeping track of the time</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="cat-q3" id="cat-q3-option3" value="option3">
+                <label for="cat-q3-option3">You're thrilled to play with the cats, even though you know you'll start sneezing– they're too adorable to resist</label>
+              </div>
+            </div>
+            <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+          </div>
+          
+          <!-- Cat Track: Question 4 -->
+          <div class="quiz-screen track-specific" id="cat-question-4" data-track="cat">
+            <h2>Question 4: While scrolling through social media late at night, you pause on a photo of a kitten that needs a home. Your thoughts are</h2>
+            <div class="quiz-options">
+              <div class="option">
+                <input type="radio" name="cat-q4" id="cat-q4-option1" value="option1">
+                <label for="cat-q4-option1">"Not even a consideration—my health and home need to remain cat-free"</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="cat-q4" id="cat-q4-option2" value="option2">
+                <label for="cat-q4-option2">"I wish I could, but I've thought this through before and know it wouldn't work out"</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="cat-q4" id="cat-q4-option3" value="option3">
+                <label for="cat-q4-option3">"Yes, I've owned or currently own a cat despite my allergies, and I could make this work!"</label>
+              </div>
+            </div>
+            <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+          </div>
+          
+          <!-- Cat Track: Question 5 -->
+          <div class="quiz-screen track-specific" id="cat-question-5" data-track="cat">
+            <h2>Question 5: At a dinner party, the conversation turns to pets. Someone asks about your cat allergy. You respond with:</h2>
+            <div class="quiz-options">
+              <div class="option">
+                <input type="radio" name="cat-q5" id="cat-q5-option1" value="avoidant">
+                <label for="cat-q5-option1">"I've learned the hard way that prevention is best. I try not to put myself in situations with cats when I can avoid it."</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="cat-q5" id="cat-q5-option2" value="silent">
+                <label for="cat-q5-option2">"I manage it quietly. I've got my system down, and I don't like making my allergies anyone else's problem."</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="cat-q5" id="cat-q5-option3" value="lover">
+                <label for="cat-q5-option3">"It's worth the discomfort. I still have cats in my life because the joy they bring outweighs the symptoms."</label>
+              </div>
+            </div>
+            <button class="btn btn--full add-to-cart next-button" disabled="">Next</button>
+          </div>
+          
+              <!-- DOG TRACK QUESTIONS -->
+              <!-- Dog Track: Question 2 -->
+              <div class="quiz-screen track-specific" id="dog-question-2" data-track="dog">
+                <h2>Question 2: You're walking through the park when a friendly off-leash bulldog runs up to greet you. What's your immediate reaction?</h2>
+                <div class="quiz-options">
+                  <div class="option">
+                    <input type="radio" name="dog-q2" id="dog-q2-option1" value="avoid">
+                    <label for="dog-q2-option1">You step back and politely ask the owner to call their dog back</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="dog-q2" id="dog-q2-option2" value="tolerate">
+                    <label for="dog-q2-option2">You allow a brief, cautious interaction while trying not to touch your face afterward</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="dog-q2" id="dog-q2-option3" value="interact">
+                    <label for="dog-q2-option3">You kneel down for a proper greeting, knowing you'll be sneezing later</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+              </div>
+          
+              <!-- Dog Track: Question 3 -->
+          <div class="quiz-screen track-specific" id="dog-question-3" data-track="dog">
+            <h2>Question 3: Your best friend just got a new puppy and invites you over for a movie night to meet the new addition. What do you do?</h2>
+            <div class="quiz-options">
+              <div class="option">
+                <input type="radio" name="dog-q3" id="dog-q3-option1" value="option1">
+                <label for="dog-q3-option1">You suggest hosting at your place instead or meeting at a dog-free location</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="dog-q3" id="dog-q3-option2" value="option2">
+                <label for="dog-q3-option2">You go prepared with allergy medication and have a exit strategy if symptoms get too bad</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="dog-q3" id="dog-q3-option3" value="option3">
+                <label for="dog-q3-option3">You arrive with a dog toy as a gift and spend most of the evening on the floor playing with the puppy</label>
+              </div>
+            </div>
+            <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+          </div>
+          
+          <!-- Dog Track: Question 4 -->
+          <div class="quiz-screen track-specific" id="dog-question-4" data-track="dog">
+            <h2>While talking with a coworker about their dog, they mention that they're also allergic and have a Labradoodle, a 'hypoallergenic breed.' Your response is:</h2>
+            <div class="quiz-options">
+              <div class="option">
+                <input type="radio" name="dog-q4" id="dog-q4-option1" value="option1">
+                <label for="dog-q4-option1">"That's nice, but I generally keep my distance from all dogs regardless of breed"</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="dog-q4" id="dog-q4-option2" value="option2">
+                <label for="dog-q4-option2">"I've heard about those—what kind is it? I've read a little about different breeds"</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="dog-q4" id="dog-q4-option3" value="option3">
+                <label for="dog-q4-option3">"I've researched those before! Can you tell me more about your experience with allergies around him?"</label>
+              </div>
+            </div>
+            <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+          </div>
+          
+          <!-- Dog Track: Question 5 -->
+          <div class="quiz-screen track-specific" id="dog-question-5" data-track="dog">
+            <h2>Question 5: During a family gathering, your cousin asks why you seem uncomfortable around their dog. You explain:</h2>
+            <div class="quiz-options">
+              <div class="option">
+                <input type="radio" name="dog-q5" id="dog-q5-option1" value="avoidant">
+                <label for="dog-q5-option1">"I have really bad allergies, need to be careful around dogs for my health—nothing personal against your pup"</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="dog-q5" id="dog-q5-option2" value="silent">
+                <label for="dog-q5-option2">"I have allergies, but I've got it under control. No need to worry or change anything for me"</label>
+              </div>
+              <div class="option">
+                <input type="radio" name="dog-q5" id="dog-q5-option3" value="lover">
+                <label for="dog-q5-option3">"The sniffles are worth it to spend time with both you and your dog, some things are more important than allergies"</label>
+              </div>
+            </div>
+            <button class="btn btn--full add-to-cart next-button" disabled="">Next</button>
+          </div>
+          
+              <!-- DUST TRACK QUESTIONS -->
+              <!-- Dust Track: Question 2 -->
+              <div class="quiz-screen track-specific" id="dust-question-2" data-track="dust">
+                <h2>Question 2: While helping a friend move some old boxes from their attic, you feel your allergies kick in. This reaction seems:</h2>
+                <div class="quiz-options">
+                  <div class="option">
+                    <input type="radio" name="dust-q2" id="dust-q2-option1" value="new">
+                    <label for="dust-q2-option1">Surprising and new— you're just beginning to connect these symptoms to dust</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="dust-q2" id="dust-q2-option2" value="years">
+                    <label for="dust-q2-option2">Familiar but manageable— you've been dealing with this for a few years now</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="dust-q2" id="dust-q2-option3" value="long">
+                    <label for="dust-q2-option3">Exactly what you expected— you've lived with this your entire life and knew what was coming</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+              </div>
+          
+              <!-- Dust Track: Question 3 -->
+              <div class="quiz-screen track-specific" id="dust-question-3" data-track="dust">
+                <h2>Question 3: It's Sunday morning and you're thinking about cleaning the house. What's your approach to dust?</h2>
+                <div class="quiz-options">
+                  <div class="option">
+                    <input type="radio" name="dust-q3" id="dust-q3-option1" value="option1">
+                    <label for="dust-q3-option1">"Time for another deep clean, I was just here with the microfiber cloth yesterday"</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="dust-q3" id="dust-q3-option2" value="option2">
+                    <label for="dust-q3-option2">"I'll stick to my weekly cleaning schedule—Sunday is dusting day"</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="dust-q3" id="dust-q3-option3" value="option3">
+                    <label for="dust-q3-option3">"I need to focus on the bedroom today—that's where dust affects me most while I sleep"</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+              </div>
+              
+              <!-- Dust Track: Question 4 -->
+              <div class="quiz-screen track-specific" id="dust-question-4" data-track="dust">
+                <h2>Question 4 :A friend comments on the decor in your home. Little do they know, many of your design choices were influenced by your dust allergies. Your home reflects:</h2>
+                <div class="quiz-options">
+                  <div class="option">
+                    <input type="radio" name="dust-q4" id="dust-q4-option1" value="option1">
+                    <label for="dust-q4-option1">A minimalist approach with hard surfaces, no carpets, and few textiles to collect dust</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="dust-q4" id="dust-q4-option2" value="option2">
+                    <label for="dust-q4-option2">A normal appearance with a couple extra air purifiers</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="dust-q4" id="dust-q4-option3" value="option3">
+                    <label for="dust-q4-option3">A typical home, except for your meticulously maintained bedroom</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+              </div>
+              
+              <!-- Dust Track: Question 5 -->
+              <div class="quiz-screen track-specific" id="dust-question-5" data-track="dust">
+                <h2>Question 5: You're staying at an AirBnb that's super aesthetic with lots of old pillows, carpets and books. You wake up congested. Your first thought is:</h2>
+                <div class="quiz-options">
+                  <div class="option">
+                    <input type="radio" name="dust-q5" id="dust-q5-option1" value="aware">
+                    <label for="dust-q5-option1">Not to immediately connect it to dust– you're still learning about your condition, but make the connection later</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="dust-q5" id="dust-q5-option2" value="silent">
+                    <label for="dust-q5-option2">"I'm going to do a quick clean so that this doesn't get worse"</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="dust-q5" id="dust-q5-option3" value="battler">
+                    <label for="dust-q5-option3">"Tonight I'll need to create a better sleeping environment—that's where dust affects me most"</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next</button>
+              </div>
+          
+              <!-- POLLEN TRACK QUESTIONS -->
+              <!-- Pollen Track: Question 2 -->
+              <div class="quiz-screen track-specific" id="pollen-question-2" data-track="pollen">
+                <h2>Question 2: The weather app on your phone shows today will be sunny and perfect—but also high in pollen. Your reaction to this forecast is:</h2>
+                <div class="quiz-options">
+                  <div class="option">
+                    <input type="radio" name="pollen-q2" id="pollen-q2-option1" value="severe">
+                    <label for="pollen-q2-option1">Dread—you know today will be a struggle just to get through basic activities</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="pollen-q2" id="pollen-q2-option2" value="moderate">
+                    <label for="pollen-q2-option2">Resignation—you'll take your medication and carry on with some modifications</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="pollen-q2" id="pollen-q2-option3" value="mild">
+                    <label for="pollen-q2-option3">Strategic planning—you'll adjust your schedule based on pollen patterns</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+              </div>
+          
+              <!-- Pollen Track: Question 3 -->
+              <div class="quiz-screen track-specific" id="pollen-question-3" data-track="pollen">
+                <h2>Question 3: The calendar has just turned to allergy season. Your preparation involves:</h2>
+                <div class="quiz-options">
+                  <div class="option">
+                    <input type="radio" name="pollen-q3" id="pollen-q3-option1" value="option1">
+                    <label for="pollen-q3-option1">Stocking your medicine cabinet and canceling outdoor plans for the foreseeable future</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="pollen-q3" id="pollen-q3-option2" value="option2">
+                    <label for="pollen-q3-option2">Brewing local honey tea and keeping medications as a backup for when natural remedies aren't enough</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="pollen-q3" id="pollen-q3-option3" value="option3">
+                    <label for="pollen-q3-option3">Checking your pollen tracking app and planning your activities around the daily forecasts</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+              </div>
+              
+              <!-- Pollen Track: Question 4 -->
+              <div class="quiz-screen track-specific" id="pollen-question-4" data-track="pollen">
+                <h2>Question 4: Friends invite you to an outdoor wedding during peak pollen season. Your response is:</h2>
+                <div class="quiz-options">
+                  <div class="option">
+                    <input type="radio" name="pollen-q4" id="pollen-q4-option1" value="option1">
+                    <label for="pollen-q4-option1">I'll attend the ceremony but I may skip part of the outdoor reception— my health has to come first</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="pollen-q4" id="pollen-q4-option2" value="option2">
+                    <label for="pollen-q4-option2">I'll go, no meds, and just grin and bare it.</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="pollen-q4" id="pollen-q4-option3" value="option3">
+                    <label for="pollen-q4-option3">I checked an hourly pollen forecast, and it doesn't look that bad at that time. I should be good to go!</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next Question</button>
+              </div>
+              
+              <!-- Pollen Track: Question 5 -->
+              <div class="quiz-screen track-specific" id="pollen-question-5" data-track="pollen">
+                <h2>Question 5: While chatting with a new acquaintance about the changing seasons, they ask about your sniffling. You explain your approach to pollen season as:</h2>
+                <div class="quiz-options">
+                  <div class="option">
+                    <input type="radio" name="pollen-q5" id="pollen-q5-option1" value="seasonal">
+                    <label for="pollen-q5-option1">"Certain times of year are just difficult for me, but I've learned to plan my life accordingly"</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="pollen-q5" id="pollen-q5-option2" value="reluctant">
+                    <label for="pollen-q5-option2">"I'm not big on taking medicine for my allergies for three months of the year, so I deal with it"</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" name="pollen-q5" id="pollen-q5-option3" value="watcher">
+                    <label for="pollen-q5-option3">"I do my best to stay informed about pollen conditions so that I can stay one step ahead!"</label>
+                  </div>
+                </div>
+                <button class="btn btn--full add-to-cart next-button" disabled="">Next</button>
+              </div>
+          
+              <!-- Email collection screen -->
+              <div class="quiz-screen" id="email-screen">
+                <h2>Get Your Allergy Personality Results</h2>
+                <p>Enter your email to receive your personalized recommendations.</p>
+                
+                <div class="privacy-disclaimer" style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; margin: 20px 0; font-size: 14px; color: #6c757d;">
+                  <p style="margin: 0 0 10px 0;"><strong>Privacy Notice:</strong> This form may collect data from you, including your allergen sensitivities, concerns, management strategies, and contact information. We use this data to provide you with personalized results, access to exclusive content, and marketing purposes.</p>
+                  <p style="margin: 0;">By providing your email, you agree that Pacagen may process your data for these purposes. You can revoke this consent at any time by contacting us at <a href="mailto:support@pacagen.com">support@pacagen.com</a>, or unsubscribing from our mailing list. For more information, please refer to our <a href="/privacy-policy.html">privacy policy</a> and <a href="/terms-of-service.html">terms of service</a>.</p>
+                </div>
+                
+                <form id="email-form">
+                  <div class="form-group">
+                    <input type="email" name="email" id="klaviyo-email" placeholder="Your email address" required="" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$" title="Please enter a valid email address">
+                    <div class="email-error-message" style="color: red; display: none; margin-top: 5px; font-size: 14px;">
+                      Please enter a valid email address
+                    </div>
+                  </div>
+                  
+                  <button type="submit" class="btn btn--full add-to-cart next-button">Continue</button>
+                </form>
+              </div>
+
+              <!-- Phone collection screen -->
+              <div class="quiz-screen" id="phone-screen">
+                <h2>Get Your Allergy Personality Results</h2>
+                <p>Would you like to receive text message updates about your allergy personality and personalized recommendations?</p>
+                
+                <form id="phone-form">
+                  <div class="form-group">
+                    <input type="tel" name="phone" id="user-phone" placeholder="Your phone number (XXX-XXX-XXXX)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Phone number format: XXX-XXX-XXXX">
+                    <div class="phone-error-message" style="color: red; display: none; margin-top: 5px; font-size: 14px;">
+                      Please enter a valid US phone number in format XXX-XXX-XXXX
+                    </div>
+                  </div>
+                  
+                  <div class="form-group legal-terms">
+                    <label class="terms-checkbox">
+                      <input type="checkbox" name="terms-agree" id="terms-agree">
+                      <span>By providing your number and clicking the button, you agree to receive recurring auto-dialed marketing SMS from Pacagen (including cart reminders; AI content; artificial or prerecorded voices) and our <a href="/terms-of-service.html">TERMS OF SERVICE</a> (including arbitration). Consent is not required to purchase. Msg & data rates may apply. Msg frequency varies. Reply HELP for help; STOP to opt-out. View <a href="/privacy-policy.html">PRIVACY POLICY</a>.</span>
+                    </label>
+                    <div class="terms-error-message" style="color: red; display: none; margin-top: 5px; font-size: 14px;">
+                      You must agree to the terms to continue
+                    </div>
+                  </div>      
+        
+                  <div class="button-group">
+                    <button type="submit" class="btn btn--full add-to-cart next-button" id="get-results-btn">Get My Results</button>
+                    <button type="button" class="btn btn--secondary" id="skip-phone-btn">No thanks, I'd like to proceed</button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Final form for Klaviyo submission -->
+              <form id="klaviyo-quiz-form" method="post" style="display: none;">
+                <input type="hidden" name="track" id="track-value">
+                <input type="hidden" name="personality" id="personality-value">
+                <input type="hidden" name="q1_answer" id="q1-answer">
+                <input type="hidden" name="q2_answer" id="q2-answer">
+                <input type="hidden" name="q3_answer" id="q3-answer">
+                <input type="hidden" name="q4_answer" id="q4-answer">
+                <input type="hidden" name="q5_answer" id="q5-answer">
+              </form>
+            </div>
+          
+              <!-- RESULT SCREENS -->
+          <!-- CAT TRACK RESULTS -->
+          <div class="quiz-screen results-screen" id="result-cat-avoidant">
+            <h2>YOUR ALLERGY PERSONALITY: <br><br> The Feline Avoidant</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-cat-avoidant.webp" alt="The Feline Avoidant" loading="lazy" class="personality-img">
+              <p class="personality-description">
+                As a <b>Feline Avoidant</b>, your relationship with cats is defined by <i>clear boundaries</i>. You've experienced the uncomfortable reality of allergic reactions and made the practical decision that health comes first. Your approach to allergens is deliberate- if it makes you sneeze, you stay away.<br><br>
+                You're pragmatic and unapologetic - you've established polite but firm ways to decline cat encounters, from checking with hosts before visits to choosing pet-free accommodations when traveling. From time to time you feel down about your inability to be around cats, but your friends understand your limits and you don't feel the need to downplay or over-explain your choices. <br><br>
+                Your approach demonstrates self-respect, prioritizing personal comfort while acknowledging the reality of your allergies as a non-negotiable aspect of life rather than something to overcome. When it comes to choosing between enduring symptoms or maintaining distance, you've made your choice with confidence. Prevention is your superpower.
+            </p>
+                
+                      
+            <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description">
+                  When <b>Kim Kardashian</b> adopted an adorable white kitten named Mercy, she was excited to show her off on social media. But the excitement was short-lived, as Kim soon discovered she was severely allergic. Rather than suffer, she made the difficult but health-conscious decision to rehome Mercy with her sister's assistant.<br><br>
+                  The rehoming was met with some public sadness, but Kim stuck to her choice, knowing it was the best solution for her health and for the kitten's happiness. She didn't try to "power through" or hide her allergy– she accepted the situation and acted decisively. This is what a Feline Avoidant does best: they minimize risk without guilt.<br><br>
+                  You and Kim have a lot in common. You believe in clear boundaries, polite declines, and protecting your well-being. Whether it's checking with a host about pets or steering clear of the local cat café, your superpower is prevention. Clean, classy, and in control.
+              </p>
+          
+              <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+                <ol>
+                    <li>Create a no-exceptions policy for your living space, clearly communicating to friends and family that your home must remain entirely cat-free to protect your health.</li>
+                    <li>Before accepting invitations, politely inquire about pets and suggest alternative venues when cats will be present, emphasizing your health needs without apology.</li>
+                    <li>Use a Cat Allergen Neutralizing Spray, like Pacagen, to <b>neutralize up to 98% cat allergens</b> in spaces where cats can't be avoided. Pacagen works by breaking down the Fel d 1 protein in cat saliva and dander that triggers your allergic reactions.</li>
+                </ol>
+              </div>
+              
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/starter-pack-silhouette.webp?v=1720547535" alt="Pacagen Cat Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/cat-allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <div class="quiz-screen results-screen" id="result-cat-silent">
+            <h2>YOUR ALLERGY PERSONALITY: <br><br>The Silent Cat Sufferer</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-cat-silent.webp" alt="The Silent Cat Sufferer" loading="lazy" class="personality-img">
+              <p class="personality-description">
+                As a <b>Silent Cat Sufferer</b>, your interaction with cats happens <i>on your own terms</i>, despite your allergies. You've learned to manage your reactions discreetly, sometimes carrying antihistamines and developing subtle strategies to minimize contact without drawing attention to your discomfort.<br><br>
+                You're diplomatic and composed, and move through cat homes with subtle grace, maintaining a calm exterior even as you start feeling flare-ups coming on. You're not afraid to excuse yourself to take a breath of fresh air or wash your hands before symptoms become noticeable. Your friends rarely notice your careful management, as you value social harmony over highlighting your personal challenges.<br><br> 
+                Your approach reflects quiet dignity, accepting your allergic reality while refusing to make it the center of attention or conversation. When faced with the choice between making a scene or handling your symptoms privately, you consistently choose the path of understated grace and self-sufficiency. There's no drama in your management, just dignity and discretion.</p>
+                
+            <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description">
+                <b>Emily Blunt</b> once casually mentioned in a BuzzFeed interview that she's allergic to cats— no fanfare, no dramatic anecdotes, just a quiet preference for dogs. While she clearly knows how to avoid triggering her allergies, she doesn't make a fuss about it. That kind of low-key management, especially in social settings, is classic Silent Sufferer energy. <br><br>
+                She's never gone viral for a cat encounter or posted a dramatic allergy flare-up story. Instead, she handles things with subtle grace, choosing environments and company that won't set her off while keeping her comfort to herself. There's something deeply British and elegant about how she does it—practical, polite, and not at all self-pitying. <br><br>
+                Like Emily, you probably come prepared—meds tucked in your bag, a practiced smile when your friend's tabby brushes your leg. You manage the sneezes silently, valuing harmony over hassle. No drama, just dignity (and maybe a discreet antihistamine).
+              </p>
+              
+              <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+                <ol>
+                  <li>Take a non-drowsy antihistamine before visiting homes with cats to reduce your symptoms without affecting your social interaction.</li>
+                  <li>Wash your hands and face immediately after petting cats to minimize allergen transfer to your eyes and airways.</li>
+                  <li>Use a Cat Allergen Neutralizing Spray, like Pacagen, to neutralize up to 98% of cat allergens in spaces where cats can't be avoided. Pacagen works by breaking down the active cat allergens that trigger flare-ups, and the powerful formula continues working for 72 hours after application.</li>
+                </ol>
+              </div>
+              
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/starter-pack-silhouette.webp?v=1720547535" alt="Pacagen Cat Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/cat-allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <div class="quiz-screen results-screen" id="result-cat-lover">
+            <h2>YOUR ALLERGY PERSONALITY:<br><br>The Pained Cat Lover</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-cat-lover.webp" alt="The Pained Cat Lover" loading="lazy" class="personality-img">
+              <p class="personality-description"> 
+                As a <b>Pained Cat Lover</b>, your fondness for cats is <i>undeniable</i>, despite your severe allergies. You willingly spend time with cats even knowing they'll trigger symptoms because the joy and connection they bring far outweighs the discomfort.<br><br>
+                You're practical but passionate- you've created a routine of management strategies that help reduce reactions while also maintaining your cherished cat relationships. Your friends might raise an eyebrow when you see you reaching for tissues after petting a cat, but you just smile– because to you, it's a small price to pay.<br><br>
+                Your approach strikes a thoughtful balance, prioritizing emotional connection while accepting your allergies as a manageable challenge rather than an insurmountable obstacle. When it comes to choosing between avoiding cats entirely or dealing with some sniffles, you've made your choice with both your heart and eyes wide open.
+              </p>
+            
+              <h3>Your Allergy Personality in the Spotlight</h3>
+          
+              <p class="celebrity-description"> 
+                Despite playing a character named "Cat" on TV, <b> Ariana Grande </b>has confirmed allergies to cats. Her feelings on her cat allergies were perfectly summed up in a 2010 tweet from her which read "I'm allergic to cats... Couldn't resist though &lt;3".<br><br>
+                While Ariana Grande is well known for her love of dogs, she also has a cat! On an episode of her podcast <i>Earth to Ariana</i>, she shared the story of rescuing her cat, Kitty, from a dumpster, and recounted how she once had to smuggle her in a purse on a bus.<br><br>
+                The cat connections in Ariana's life run surprisingly deep. She's worn cat ears on stage, was once a cat for halloween, and even revealed that her parents named her after Princess Oriana from Felix the Cat.<br><br>
+                You and Ariana Grande both know what it's like to <i>love</i> cats... even when your immune systems say otherwise. Like Ariana, you're the kind of person who suffers through sniffles for the things (and animals) you adore. A true, dramatic, ride-or-die softie.
+              </p>
+              
+              <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+                <ol>
+                  <li>If you own cats, <b>create designated "low-allergen zones"</b> in your home where cats have limited or no access, especially your bedroom, to ensure you have at least one space for allergen-free sleep.</li>
+                  <li>After petting cats, <b>wash your hands</b> to ensure you don't accidentally get allergens on your eyes, which can cause itchiness and discomfort.</li>
+                  <li>Invest in allergen-neutralizing products, such as Pacagen's Cat Allergen Neutralizing Spray, to <b>neutralize up to 98% of cat allergens</b> in your home. Regularly spray Pacagen on furniture, bedding and areas where your cat spends time to significantly reduce the root cause of flare-ups.</li>
+                </ol>
+              </div>
+              
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/starter-pack-silhouette.webp?v=1720547535" alt="Pacagen Cat Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/cat-allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- DOG TRACK RESULTS -->
+          <div class="quiz-screen results-screen" id="result-dog-avoidant">
+            <h2>YOUR ALLERGY PERSONALITY:<br><br>The Canine Avoidant</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-dog-avoidant.webp" alt="The Canine Avoidant" loading="lazy" class="personality-img">
+              <p class="personality-description">
+                   As a <b>Canine Avoidant</b>, your approach to dogs is characterized by <i>clear communication</i> and <i>unapologetic boundaries</i>. You've experienced the uncomfortable or even dangerous reality of allergic reactions and have made the practical decision that your health must come first. Your relationship with dogs is defined by careful planning and deliberate choices.<br><br>
+                   You're straightforward and proactive. You've established effective ways to protect yourself while still navigating a dog-loving world. Sometimes you feel bad that you can't be there with your dog-loving friends, but you live with it anyways. You research alternatives that might work with your allergies and aren't afraid to speak up about your needs, whether declining invitations to dog-friendly events or explaining your situation to new acquaintances.<br><br>
+                   Your approach demonstrates healthy self-advocacy, prioritizing your well-being while acknowledging your allergies as a non-negotiable aspect of life rather than something to be ignored. When it comes to choosing between struggling to breathe or maintaining appropriate distance, you've made your choice with confidence and without guilt.</p> 
+              <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description">
+                <b>Pete Davidson</b> is severely allergic to dogs—and he's not afraid to talk about it. When he adopted a hypoallergenic cavapoo, he made headlines for a fiery voicemail to PETA defending the decision. Pete explained that his allergy made shelter adoption nearly impossible without risking serious reactions.<br><br>
+                Pete's situation sparked a national conversation, and he didn't hold back. His allergy isn't a secret, nor is the careful planning he does around it. He's upfront, honest, and unapologetic. He loves dogs, sure—but not more than he loves being able to breathe.<br><br>
+                Like Pete, you're all about being upfront and setting boundaries. You do the research, choose your environments carefully, and make no apologies for protecting your health. You're not anti-dog—you're just pro-breathing.</p>
+                
+              <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+                <ol> 
+                    <li>Research hypoallergenic dog breeds thoroughly if considering pet ownership, focusing on scientific evidence rather than popular claims about allergy-friendly dogs.</li> 
+                    <li>Create a standard response for declining dog-centered invitations that's both firm and friendly, removing the need to explain your allergy repeatedly.</li> 
+                    <li>Use a Dog Allergen Neutralizing Spray, like Pacagen, to neutralize dog allergens. Pacagen works by breaking down the Can f 1 and Can f 2 proteins in dog saliva and dander that triggers your allergic reactions. Keep a bottle handy for decontaminating clothing or items after unavoidable dog exposure.</li> 
+                </ol>
+              </div>
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/DANS_1000x1000_2ce2d237-4805-44d8-9bd2-04dfbc6094a0.png?v=1739548859" alt="Pacagen Dog Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/dog-allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <div class="quiz-screen results-screen" id="result-dog-silent">
+            <h2>YOUR ALLERGY PERSONALITY:<br><br>The Silent Dog Sufferer</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-dog-silent.webp" alt="The Silent Dog Sufferer" loading="lazy" class="personality-img">
+          
+              <p class="personality-description">
+                As a <b>Silent Dog Sufferer</b>, your interactions with dogs happen <i>on your own terms</i> and managed with quiet dignity despite your allergies. You've developed subtle coping strategies that allow you to participate in dog-friendly social settings without drawing attention to your discomfort or inconveniencing others.<br><br>
+                You're adaptable and composed, and are able to navigate social situations where dogs are present. You do this by maintaining your cool even as you your eyes start to itch and you get the urge to sneeze. Rather than asking the world to accommodate your needs, you've gotten good at self-managing in these environments. Your friends may not even know you're allergic to dogs, as you keeping the peace over expressing your personal challenges.<br><br>
+                Your approach reflects a balanced pragmatism, accepting your allergic reality while refusing to make it the center of attention or conversation. When faced with choosing between making a scene or handling your symptoms privately, you choose the path of quiet resilience and social grace. You don't want to ruin the vibe, you just want to get through the gathering without anyone noticing your struggle.</p>
+              
+              <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description"><b>Brad Pitt</b> is reportedly allergic to dogs, though you'd hardly know it. He's never made a fuss about it in public, and you'd be hard-pressed to find a quote where he complains. That quiet endurance is pure Silent Dog Sufferer.<br><br>
+                Despite being seen around dogs and in pet-friendly social circles, Brad has kept his allergy out of the spotlight. This suggests a level of tolerance and self-management that doesn't rely on asking others to change for him. He adapts silently, keeps the peace, and maintains his cool.<br><br>
+                You don't want to alienate dog lovers or make it all about your sinuses– you're trying to make it through the barbecue without sneezing all over the food. Like Brad, you keep it cool, collected, and under control, even when you're sniffling inside.</p>
+          
+                <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+          
+                <ol>
+                    <li>Develop a discreet pre-exposure routine, taking non-drowsy antihistamines about 30 minutes before entering situations where dogs might be present.</li>
+                    <li>Create a post-exposure routine, changing and washing your clothes shortly after being in dog environments. Take a shower to remove allergens from your hair and skin.</li>
+                    <li>Use a Dog Allergen Neutralizing Spray, like Pacagen, to neutralize active dog allergens in your environment. Pacagen works by breaking down the proteins in dog saliva and dander that trigger allergic reactions.</li>
+                </ol>
+          
+            </div>
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/DANS_1000x1000_2ce2d237-4805-44d8-9bd2-04dfbc6094a0.png?v=1739548859" alt="Pacagen Dog Allergen Neutralizing Spray" class="product-image" loading="lazy">  
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/dog-allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <div class="quiz-screen results-screen" id="result-dog-lover">
+          
+            <h2>YOUR ALLERGY PERSONALITY:<br><br>The Pained Dog Lover</h2>
+          
+            <div class="product-recommendation">
+              <img src="/assets/images/img-dog-lover.webp" alt="The Pained Dog Lover" loading="lazy" class="personality-img">
+              <p class="personality-description">
+                As a <b>Pained Dog Lover</b>, your connection with dogs is <i>worth every symptom</i>, despite your significant allergies. You willingly accept discomfort, medication routines, and constant cleaning because the joy and companionship dogs bring to your life far outweighs any physical reactions they trigger.<br><br>
+                You're devoted and resilient - you've created systems and routines that help manage your symptoms while maintaining meaningful relationships with dogs. Your medicine cabinet is well-stocked and your vacuum cleaner gets regular workouts. Your friends might raise eyebrows when they see your watery eyes after a play session, but you just smile– because to you, it's a worthwhile exchange.<br><br>
+                Your approach demonstrates passionate commitment, prioritizing emotional connection while accepting your allergies as a manageable challenge rather than a deterrent. When faced with choosing between a dog-free existence or dealing with symptoms, you've made your choice with both heart and eyes wide open—even if those eyes are occasionally red and itchy. Symptoms be damned—you're all heart.</p>
+                
+          
+              
+              <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description">
+                <b>Mark Wahlberg</b> is allergic to dogs. He also owns four of them. His strategy? Daily medication and a tolerance for being "covered in dog hair." He's admitted it's not ideal—but for him, the love is worth it.<br><br>
+                He's joked about the chaos, about the fur, and about the sneezing—but at no point has he considered life without his dogs. Mark is the kind of guy who doubles down on devotion. His allergy is real, but so is his commitment to his pack.<br><br>
+                If you've ever cuddled a pup knowing full well you'd pay for it later, you're in the same boat as Mark. You're the kind of person who would rather wheeze through a walk than miss out on doggy kisses. Symptoms be damned—you're all heart.</p>
+              
+                <div class="tips-section">
+                
+                    <h3>Your Top Tips:</h3>
+                <ol>
+                  <li>Choose a dog breed with hair rather than fur (like poodles or certain terriers) which typically produce fewer allergens.</li>
+                  <li>Create dedicated "dog-friendly" zones in your home with easy-to-clean surfaces, separate air filtration, and regular deep cleaning routines to contain allergens.</li>
+                  <li>Use a Dog Allergen Neutralizing Spray, like Pacagen, to neutralize dog allergens. Regular use of Pacagen on your dog's bedding, your furniture, and living spaces can create a significantly more comfortable environment for allergy sufferers. Many dog owners report being able to enjoy more physical affection with their pets after making Pacagen part of their daily routine.</li>
+                </ol>
+          
+              </div>
+              
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/DANS_1000x1000_2ce2d237-4805-44d8-9bd2-04dfbc6094a0.png?v=1739548859" alt="Pacagen Dog Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/dog-allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- DUST TRACK RESULTS -->
+          <div class="quiz-screen results-screen" id="result-dust-aware">
+            <h2>YOUR ALLERGY PERSONALITY:<br><br>The Newly Aware</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-dust-aware.webp" alt="The Newly Aware" loading="lazy" class="personality-img">
+              <p class="personality-description">
+                  As a <b>Newly Aware</b>, you've recently discovered that dust is the culprit behind long-standing symptoms, bringing clarity to previously unexplained reactions. You're actively looking into the process of transforming your environment and building new habits to accommodate this new understanding of your body's needs.<br><br>
+                  You're curious and determined - you're researching solutions, experimenting with different approaches, and gradually implementing changes that make a noticeable difference in your comfort. Your friends might notice new air purifiers appearing in your home or your growing interest in allergy-friendly products, signaling your evolving awareness.<br><br>    
+                  Your approach demonstrates adaptable commitment, embracing your newfound knowledge while acknowledging that managing dust allergies is a journey of discovery rather than an instant transformation. When facing the reality that what you once considered normal was actually making you miserable, you've chosen the path of positive change and continuous improvement. Your air purifier is new. Your strategies are evolving. But hey, you're on your way!</p>
+                        
+              <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description">Actress Scarlett Johansson revealed in interviews that she discovered her dust allergies later in life, which explained chronic symptoms she had experienced. Like you, she represents the Newly Aware personality - someone who has recently connected the dots between environmental triggers and long-standing symptoms. You share her experience of sudden realization and the process of learning how to manage this newly identified allergy through environmental modifications and treatment options.</p>
+              
+              <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+                <ol>
+                  <li>Try keeping a symptom journal to track how different environments and activities affect your allergies to help you identify patterns and prioritize the most effective interventions for your specific situation.</li>
+                  <li>Begin with one focus area—typically the bedroom—and gradually expand your dust control strategies throughout your home as you learn what works best for your specific situation.</li>
+                  <li>Use a Dust Allergen Neutralizing Spray, like Pacagen, to neutralize dust allergens. Pacagen works by breaking down the dust mite proteins that trigger your allergic reactions. As a newcomer to allergy management, this spray offers an immediate impact while you develop your broader dust control strategy.</li>
+                </ol>
+                  
+              </div>
+              
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/DUANS-SP.png?v=1739659522" alt="Pacagen Dust Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/dust-allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <div class="quiz-screen results-screen" id="result-dust-silent">
+            <h2>YOUR ALLERGY PERSONALITY:<br><br>The Conscientious Cleaner</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-dust-cleaner.webp" alt="The Conscientious Cleaner" loading="lazy" class="personality-img">
+              <p class="personality-description">
+                  As a <b>Conscientious Cleaner</b>, your approach to dust allergies is <i>methodical and proactive</i>. You've developed comprehensive systems to minimize allergen exposure. When it comes to cleaning, you can be a bit of a perfectionist– but it's all in the interest of creating an environment where you can function at your best.<br><br>
+                  You're strategic and thorough - you've established regular cleaning routines, invested in the right tools and have made informed decisions about everything from flooring to furniture. Your approach to housekeeping might seem intense to others, but you understand that for you, cleanliness isn't optional, it's essential for your well-being.<br><br> 
+                  Your approach demonstrates practical determination while acknowledging that dust management is a continuous process rather than a one-time solution. When faced with the choice between more frequent cleaning or more frequent symptoms, you've chosen the path of prevention without hesitation.</p>
+              <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description">
+                K-pop star Hwang Min-hyun once revealed that his favorite hobby is… cleaning. Not fashion, not gaming, not even music. Cleaning. And not just casually tidying up either—Min-hyun vacuums and dusts his home with the precision of someone preparing for a white glove inspection. When asked why he's so meticulous, he didn't hesitate: he has a dust allergy.&nbsp;For a Conscientious Cleaner, that confession is a quiet anthem.<br><br>
+                It's not about being obsessive, it's about protecting your space, your breathing, and your peace. Min-hyun's approach isn't performative or perfectionist. It's practical. He knows that dust triggers his allergies, so he creates an environment where he can thrive. He's not waiting for someone else to clean it for him. He makes the effort himself, day after day, room after room.<br><br>
+                Like Min-hyun, you're not cleaning for the compliments. You're doing it because it makes a difference. You've read the allergy forums, invested in the vacuum with the good HEPA filter, and figured out exactly how often your ceiling fan needs wiping before it betrays you. It's work, but it's worth it.&nbsp;
+              </p>
+              
+              <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+                <ol>
+                    <li>Create a systematic cleaning schedule with targeted focus areas for different days to ensure comprehensive dust management without overwhelming yourself.</li>
+                    <li>Invest in a high-quality vacuum with HEPA filtration, and use specialized vacuum attachments for upholstery, curtains, and hard-to-reach areas where dust accumulates.</li>
+                    <li>Use a Dust Allergen Neutralizing Spray, like Pacagen, to neutralize dust allergens. Pacagen works by breaking down the dust mite proteins that trigger your allergic reactions. Apply it to surfaces after cleaning to continue breaking down residual allergens that vacuuming and dusting might miss.</li>
+                </ol>
+              </div>
+              
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/DUANS-SP.png?v=1739659522" alt="Pacagen Dust Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/dust-allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <div class="quiz-screen results-screen" id="result-dust-battler">
+            <h2>YOUR ALLERGY PERSONALITY:<br><br>The Bedtime Battler</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-dust-bedtime.webp" alt="The Bedtime Battler" loading="lazy" class="personality-img">
+              <p class="personality-description">
+                As a <b>Bedtime Battler</b>, your relationship with dust allergies intensifies <i>when the lights go out</i>. You've recognized that nighttime presents unique challenges for allergy management, and you've created specialized protocols to protect your sleep environment and ensure restful recovery when you're most vulnerable.<br><br>
+                You're methodical and protective - you've transformed your bedroom into an allergen-minimized sanctuary with careful attention to bedding, air quality, and pre-sleep routines. Your nighttime regimen might seem elaborate to others, but you understand that quality sleep is non-negotiable for your health and daily functioning.<br><br>
+                Your approach reflects practical necessity, prioritizing your sleep space as the most critical environment to control while also accepting that dust management requires vigilance rather than occasional attention. When considering the choice between complex bedtime routines or disrupted sleep, you've made your decision with clarity and conviction.</p>
+              <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description">
+                Full House star <b>Candace Cameron Bure</b> once admitted in an Instagram Story that her favorite pillow was "probably all dust mites"—and that she still sleeps with it. She followed it up with a laugh and a little embarrassment, confessing that she has newer, cleaner pillows on standby… but can't quite part with the one that helps her fall asleep. For fellow Bedtime Battlers, this type of experience hits home.<br><br>
+                Her quiet acknowledgment says enough: she knows her pillow is likely a culprit for her allergy symptoms, but it's familiar, it's cozy, and it's part of her bedtime routine. That blend of stubborn comfort and underlying awareness is pure Bedtime Battler. It's not about being careless—it's about making small, gradual shifts toward a sleep environment that doesn't make you miserable.<br><br>
+                Like Candace, you may not have a perfectly hypoallergenic sleep setup yet, but you're trying. You wash your sheets more than most people. You've Googled dust mite covers at 2 a.m. You're fighting the invisible battle where it matters most, your bed, and learning how to sleep better without giving up everything soft and familiar. Quietly resilient. Endearingly human. You're in it for the long haul.
+              </p>
+          <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+                <ol>
+                  <li>Create a bedroom sanctuary by removing dust-collecting items like decorative pillows, stuffed animals, books, and excess furniture to minimize nighttime allergen exposure.</li>
+                  <li>Wash all bedding weekly in hot water (at least 130°F/54°C) to kill dust mites, and use allergen-proof covers on mattresses, box springs, and pillows to create a protective barrier.</li>
+                  <li>Use a Dust Allergen Neutralizing Spray, like Pacagen, to neutralize active dust allergens. Pacagen works by breaking down the dust mite proteins that trigger your allergic reactions. Apply it to your bedding, curtains, and carpets before bed to neutralize allergens while you sleep.</li>
+                  </ol>
+              </div>
+              
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/DUANS-SP.png?v=1739659522" alt="Pacagen Dust Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/dust-allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- POLLEN TRACK RESULTS -->
+          <div class="quiz-screen results-screen" id="result-pollen-seasonal">
+            <h2>YOUR ALLERGY PERSONALITY:<br><br>The Seasonal Sufferer</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-pollen-seasonal.webp" alt="The Seasonal Sufferer" loading="lazy" class="personality-img">
+              <p class="personality-description">
+                As a <b>Seasonal Sufferer</b>, your relationship with the outdoors becomes <i>complicated but manageable</i> during high pollen seasons. You've accepted that certain times of year will bring challenges, but you've developed strategies to continue living your life with minimal disruption despite the predictable patterns of your symptoms.<br><br>
+                You're resilient and pragmatic - you've learned to push through when necessary, armed with remedies and a good sense of humor about your seasonal predicament. Your friends might notice your slightly puffy eyes or hear an occasional sneeze during spring outings, but they also recognize your determination to participate fully in life regardless of pollen counts.<br><br>
+                Your approach demonstrates practical adaptation, acknowledging the reality of your allergies while refusing to let them dictate your schedule or activities. When faced with choosing between missing out on seasonal experiences or dealing with symptoms, you consistently choose engagement while making reasonable accommodations for your comfort. You don't cancel—you carry on, tissues in hand.
+              </p>
+          
+              <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description">
+                While filming a grassy field scene in Match Point, <b>Scarlett Johansson's</b> allergies flared so badly her eyes swelled shut. The scene stayed in the movie. She later joked about it in interviews, brushing it off with humor.<br><br>
+                This wasn't a one-time thing. Scarlett has talked about how outdoor shoots during spring and summer are always risky. Johansson's allergies primarily cause skin and eye irritation, as her skin becomes itchy from rashes, and her eyes swell and tear up when she comes in close contact with grass-like vegetation. But the swelling and sneezing are part of the job, and she's learned to push through when pollen season hits.<br><br>
+                If you, too, find springtime to be more of a sneeze-fest than a season, you're in Scarlett's camp. You know your triggers. You prepare. And when the pollen hits? You don't cancel—you carry on, tissues in hand.
+              </p>
+              
+              <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+                <ol>
+                  <li>Keep windows closed during peak pollen season, especially in the morning when pollen counts are typically highest.</li>
+                  <li>Change and wash clothes after spending time outdoors to remove pollen particles that cling to fabrics.</li>
+                  <li>Dealing with other allergies too? Try using an Allergen Neutralizing Spray, like Pacagen, to neutralize dog, cat, and dust allergens. While managing your seasonal pollen symptoms, don't forget that indoor allergens can compound your discomfort. Pacagen's Allergen Neutralizing Sprays specifically targets pet and dust mite allergens that might be making your seasonal symptoms feel even worse.</li>
+                </ol>
+              </div>
+              
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/web-ans.png?v=1742600988" alt="Pacagen Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <div class="quiz-screen results-screen" id="result-pollen-reluctant">
+            <h2>YOUR ALLERGY PERSONALITY:<br><br>The Reluctant Medicator</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-pollen-medicator.webp" alt="The Reluctant Medicator" loading="lazy" class="personality-img">
+              <p class="personality-description">
+                  As a <b>Reluctant Medicator</b>, your approach to pollen allergies prioritizes <i>natural solutions and mindful intervention</i>. You're not big on popping an allergy pill for three months of the year, and you've explored numerous non-pharmaceutical approaches to managing your symptoms, turning to conventional medications only when your alternative methods have been exhausted.<br><br>
+                  You're thoughtful and discerning - you research holistic options extensively, from dietary modifications to environmental controls, building a personalized toolkit of gentler interventions. Your medicine cabinet contains both conventional and alternative remedies, but you approach the former with careful consideration rather than as an automatic first response.<br><br>
+                  Your approach reflects balanced caution, seeking effective relief while acknowledging your preference for less invasive solutions when possible. When weighing immediate pharmaceutical relief against exploring gentler alternatives first, you consistently choose the path of graduated response and mindful consumption. Thoughtful, cautious, and a little crunchy, you want relief, but on your own terms.  
+              </p>
+              
+              <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description">
+                <b>Debra Messing</b> explored every natural method—diet, air filters, holistic options—before turning to medication for her pollen allergies. She's spoken about preferring to delay pharmaceuticals until absolutely necessary.<br><br>
+                She's not anti-science, just selective. For Debra, health is about balance, and she treats medicine as a last resort after trying gentler alternatives. That caution is something many pollen allergy-sufferers can relate to.<br><br>
+                If your medicine cabinet is full but rarely touched, you and Debra are kindred spirits. You weigh every option before reaching for the antihistamine.
+              </p>
+              
+              <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+                <ol>
+                  <ol>
+                    <li>Monitor local pollen forecasts and weather patterns to plan activities during lower pollen periods, allowing you to minimize medication needs by avoiding peak exposure times.</li>
+                    <li>Develop a post-outdoor routine that includes changing clothes, rinsing hair, and using a saline nasal rinse to remove pollen particles before they continue triggering symptoms.</li>
+                    <li>Dealing with other allergies too? Try using an Allergen Neutralizing Spray, like Pacagen, to neutralize dog, cat, and dust allergens. Pacagen offers a targeted approach for your indoor allergen concerns. Our specialized formulas can neutralize cat, dog or dust mite allergens without adding more medications to your regimen.</li>
+                </ol>
+              </ol>
+          </div>
+              
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/web-ans.png?v=1742600988" alt="Pacagen Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+            </div>
+          </div>
+          
+          <div class="quiz-screen results-screen" id="result-pollen-watcher">
+            <h2>YOUR ALLERGY PERSONALITY:<br><br>The Weather Watcher</h2>
+            <div class="product-recommendation">
+              <img src="/assets/images/img-pollen-watcher.webp" alt="The Weather Watcher" loading="lazy" class="personality-img">
+              <p class="personality-description">
+                  As a <b>Weather Watcher</b>, your approach to pollen allergies is <i>strategic and information-driven</i>. You've developed a sophisticated understanding of how environmental factors affect your symptoms, and you use forecasting tools and predictive planning to stay one step ahead of your allergic reactions.<br><br>
+                  You're analytical and prepared - you track pollen forecasts with the same attention others give to weather reports, planning your activities and preventative measures based on data rather than waiting for symptoms to appear. Your smartphone likely contains multiple apps that monitor allergen levels, and your daily decisions incorporate this intelligence seamlessly.<br><br>
+                  Your approach demonstrates foresight and efficiency, transforming what could be random suffering into a manageable system while acknowledging that preparation is your most powerful tool. When considering the choice between being caught unprepared or investing time in monitoring pollen patterns, you've chosen the path of prevention through information. You treat allergy season like game day—and you always play smart.
+              </p>
+              
+              <h3>Your Allergy Personality in the Spotlight</h3>
+              <p class="celebrity-description">
+                <b>Tiger Woods</b> is allergic to grass, pollen, and dust. For a golfer, that's rough. But Tiger doesn't just endure it—he strategizes around it. He avoids allergy meds during tournaments to stay sharp, relying on forecasting and planning to perform.<br><br>
+                He knows exactly what triggers him and when. Reports say he's dealt with red, itchy eyes and congestion mid-game, yet still pulls off championship performances. His weather tracking isn't just about play—it's about prevention.<br><br>
+                Like Tiger, you plan your life around pollen counts. You know when not to go outside. You've got apps, schedules, and backup meds. You treat allergy season like game day—and you always play smart.  
+              </p>
+              
+              <div class="tips-section">
+                <h3>Your Top Tips:</h3>
+                <ol>
+                  <li>Develop season-specific protocols with timing adjustments for when to close windows, run air purifiers, and take preventative medications based on the predictable patterns of tree, grass, and weed pollen seasons in your region.</li>
+                  <li>Wear wraparound sunglasses and a wide-brimmed hat outdoors to reduce pollen contact with your eyes and hair.</li>
+                  <li>Dealing with other allergies too? Try using an Allergen Neutralizing Spray, like Pacagen, to neutralize dog, cat, and dust allergens. While you're carefully tracking pollen counts, don't overlook the indoor allergens that can trigger symptoms year-round. Pacagen's formulas can specifically target cat, dog and dust mite allergens in your home environment, complementing your comprehensive approach to allergen management.</li>
+                </ol>
+              </div>
+              
+              <img src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/web-ans.png?v=1742600988" alt="Pacagen Allergen Neutralizing Spray" class="product-image" loading="lazy">
+              
+              <a href="javascript:void(0)" onclick="fireMarketingEventAndRedirect('https://pacagen.com/products/allergen-neutralizing-spray')" class="section-spacing btn btn--full add-to-cart next-button">Learn More</a>
+          </div>
+          </div>
+          </div>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+
+        // Function to get cookie value by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return '';
+        }
+
+        // Function to fire marketing event and redirect
+        function fireMarketingEventAndRedirect(baseUrl) {
+            // Fire the marketing event
+            cvg({method: "track", eventName:"AllergyHealthDailySubmission"});
+            
+            // Get cookie values
+            let uid = getCookie('__cvg_uid');
+            let sid = getCookie('__cvg_sid');
+            
+            // Build the final URL with parameters
+            let finalUrl = baseUrl;
+            if (uid || sid) {
+                finalUrl += (finalUrl.includes('?') ? '&' : '?');
+                if (uid) finalUrl += `__cvg_uid=${encodeURIComponent(uid)}`;
+                if (uid && sid) finalUrl += '&';
+                if (sid) finalUrl += `__cvg_sid=${encodeURIComponent(sid)}`;
+            }
+            
+            // Redirect after 200ms delay
+            setTimeout(() => {
+                window.location.href = finalUrl;
+            }, 200);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+          // Quiz state variables
+          const screens = document.querySelectorAll('#shopify-quiz .quiz-screen');
+          let currentScreen = Array.from(screens).findIndex(screen => screen.id === 'welcome-screen');
+          const progress = document.getElementById('quiz-progress');
+          let currentTrack = '';
+          let personalityType = '';
+        
+          // Simple linear navigation sequence to ensure correct back navigation
+          const screenSequence = [
+            'welcome-screen',
+            'name-question',
+            'question-1'     // track selection
+            // After this, navigation is dynamic based on track selection
+          ];
+        
+          const nameQuestionScreen = document.getElementById('name-question');
+          const nameInputContainer = nameQuestionScreen.querySelector('.form-group');
+          const nameErrorMessage = document.createElement('div');
+          nameErrorMessage.className = 'name-error-message';
+          nameInputContainer.appendChild(nameErrorMessage);
+        
+          // Store answers
+          let userAnswers = {
+            track: '',
+            name: '',
+            phone: '',
+            email: '',
+            q1: '',
+            q2: '',
+            q3: '',
+            q4: '',
+            q5: ''
+          };
+        
+          // Add back buttons to all screens (except welcome screen)
+          screens.forEach((screen, index) => {
+            if (index === 0) return; // Skip welcome screen
+            
+            // Don't add back buttons to result screens
+            if (screen.classList.contains('results-screen')) return;
+            
+            // Create back button with correct classes
+            const backButton = document.createElement('button');
+            backButton.className = 'btn btn-primary'; // Use the correct class structure
+            backButton.id = 'quiz-back-button'; // Add specific ID for styling overrides
+            backButton.textContent = 'Back';
+            backButton.addEventListener('click', goToPreviousScreen);
+            
+            // Find the next button container or create one
+            const nextButton = screen.querySelector('.next-button');
+            
+            if (nextButton) {
+              // Insert the back button after the next button
+              const parentElement = nextButton.parentNode;
+              // If next button is in a form or container, add back button to that container
+              parentElement.appendChild(backButton);
+            } else {
+              // For screens without next button (like email screen)
+              const submitButton = screen.querySelector('button[type="submit"]');
+              if (submitButton) {
+                // For email screen, append after submit button
+                submitButton.parentNode.appendChild(backButton);
+              } else {
+                // Fallback - just append to the screen
+                screen.appendChild(backButton);
+              }
+            }
+          });
+        
+          // Go to previous screen function
+          function goToPreviousScreen() {
+            const currentScreenId = screens[currentScreen].id;
+            let previousScreenId;
+            
+            // For the first few screens, follow the fixed sequence
+            const currentIndex = screenSequence.indexOf(currentScreenId);
+            if (currentIndex > 0) {
+              // We're in the fixed sequence, go to previous screen in sequence
+              previousScreenId = screenSequence[currentIndex - 1];
+            } else if (currentScreenId === 'email-screen') {
+              // From email screen go back to the last question for the current track
+              previousScreenId = `${currentTrack}-question-5`;
+            } else if (currentScreenId === 'phone-screen') {
+              // From phone screen go back to email screen
+              previousScreenId = 'email-screen';
+            } else if (currentScreenId.includes('-question-')) {
+              // We're in a track-specific question
+              const match = currentScreenId.match(/(\w+)-question-(\d+)/);
+              if (match) {
+                const track = match[1];
+                const questionNum = parseInt(match[2]);
+                
+                if (questionNum > 2) {
+                  // Go to previous question in the same track
+                  previousScreenId = `${track}-question-${questionNum - 1}`;
+                } else if (questionNum === 2) {
+                  // From first track-specific question, go back to track selection
+                  previousScreenId = 'question-1';
+                }
+              }
+            }
+            
+            if (!previousScreenId) {
+              console.warn('Could not determine previous screen for:', currentScreenId);
+              return;
+            }
+            
+            // Find the previous screen index
+            let previousScreenIndex = -1;
+            for (let i = 0; i < screens.length; i++) {
+              if (screens[i].id === previousScreenId) {
+                previousScreenIndex = i;
+                break;
+              }
+            }
+            
+            if (previousScreenIndex === -1) {
+              console.error('Previous screen not found:', previousScreenId);
+              return;
+            }
+            
+            // Hide current screen
+            screens[currentScreen].classList.remove('active');
+            
+            // Show previous screen
+            screens[previousScreenIndex].classList.add('active');
+            
+            // Update current screen
+            currentScreen = previousScreenIndex;
+            
+            // Get the screen element we just moved back to
+            const currentScreenElement = screens[currentScreen];
+            
+            // Reset selections on the screen we just moved back to
+            resetScreenSelections(currentScreenElement);
+            
+            // Re-select based on saved answers for this screen
+            restoreScreenSelections(currentScreenElement);
+            
+            // Update progress bar
+            updateProgressBar();
+          }
+        
+          // Reset all selections on a screen
+          function resetScreenSelections(screenElement) {
+            // Clear all selected options
+            screenElement.querySelectorAll('.option').forEach(option => {
+              option.classList.remove('selected');
+            });
+            
+            // Disable next button
+            const nextButton = screenElement.querySelector('.next-button');
+            if (nextButton) {
+              nextButton.disabled = true;
+            }
+            
+            // Uncheck all radio inputs
+            screenElement.querySelectorAll('input[type="radio"]').forEach(input => {
+              input.checked = false;
+            });
+          }
+        
+          // Restore selections based on saved answers
+          function restoreScreenSelections(screenElement) {
+            const screenId = screenElement.id;
+            
+            // Handle each screen type
+            if (screenId === 'name-question') {
+              const nameInput = screenElement.querySelector('#user-name');
+              if (nameInput && userAnswers.name) {
+                nameInput.value = userAnswers.name;
+                // Enable next button if name exists
+                const nextButton = screenElement.querySelector('.next-button');
+                if (nextButton) {
+                  nextButton.disabled = userAnswers.name.trim() === '';
+                }
+              }
+            } 
+            else if (screenId === 'question-1') {
+              // Main question (track selection)
+              if (userAnswers.q1) {
+                const input = screenElement.querySelector(`input[value="${userAnswers.q1}"]`);
+                if (input) {
+                  input.checked = true;
+                  const optionDiv = input.closest('.option');
+                  if (optionDiv) {
+                    optionDiv.classList.add('selected');
+                    // Enable next button
+                    const nextButton = screenElement.querySelector('.next-button');
+                    if (nextButton) {
+                      nextButton.disabled = false;
+                    }
+                  }
+                }
+              }
+            }
+            else if (screenElement.classList.contains('track-specific')) {
+              // Track-specific questions
+              // Extract question number from ID (e.g., cat-question-2 -> 2)
+              const match = screenId.match(/(\w+)-question-(\d+)/);
+              if (match) {
+                const track = match[1];
+                const questionNum = match[2];
+                const questionKey = 'q' + questionNum;
+                
+                // Check if we have an answer for this question
+                if (userAnswers[questionKey]) {
+                  const input = screenElement.querySelector(`input[value="${userAnswers[questionKey]}"]`);
+                  if (input) {
+                    input.checked = true;
+                    const optionDiv = input.closest('.option');
+                    if (optionDiv) {
+                      optionDiv.classList.add('selected');
+                      // Enable next button
+                      const nextButton = screenElement.querySelector('.next-button');
+                      if (nextButton) {
+                        nextButton.disabled = false;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            else if (screenId === 'email-screen') {
+              // Email screen - restore email if available
+              const emailInput = screenElement.querySelector('#klaviyo-email');
+              if (emailInput && userAnswers.email) {
+                emailInput.value = userAnswers.email;
+              }
+            }
+            else if (screenId === 'phone-screen') {
+              // Phone screen - restore phone if available
+              const phoneInput = screenElement.querySelector('#user-phone');
+              if (phoneInput && userAnswers.phone) {
+                phoneInput.value = userAnswers.phone;
+              }
+              
+              // Terms checkbox - restore if checked
+              const termsCheckbox = screenElement.querySelector('#terms-agree');
+              if (termsCheckbox && userAnswers.termsAgreed) {
+                termsCheckbox.checked = userAnswers.termsAgreed;
+              }
+            }
+          }
+        
+          // Name input event listener
+          document.getElementById('user-name').addEventListener('input', function() {
+            validateName(); // Call our new validation function
+        
+            // Still store the name if it passes validation
+            if (validateName()) {
+              userAnswers.name = this.value.trim();
+            }
+          });
+        
+          // Email validation
+          const emailInput = document.getElementById('klaviyo-email');
+          const emailErrorMessage = document.querySelector('.email-error-message');
+        
+          // Regular expression for email validation
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/;
+        
+          // Function to validate email
+          function validateEmail() {
+            const email = emailInput.value.trim();
+        
+            if (!email) {
+              // Empty email
+              emailErrorMessage.textContent = 'Email address is required';
+              emailErrorMessage.style.display = 'block';
+              return false;
+            } else if (!emailRegex.test(email)) {
+              // Invalid format
+              emailErrorMessage.textContent = 'Please enter a valid email address';
+              emailErrorMessage.style.display = 'block';
+              return false;
+            } else {
+              // Valid email
+              emailErrorMessage.style.display = 'none';
+              return true;
+            }
+          }
+        
+          // Add event listener for email validation
+          if (emailInput) {
+            emailInput.addEventListener('input', function() {
+              // Store the email
+              userAnswers.email = this.value.trim();
+              validateEmail();
+            });
+            
+            // Validate on blur
+            emailInput.addEventListener('blur', validateEmail);
+          }
+        
+          // Phone validation
+          const phoneInput = document.getElementById('user-phone');
+          const phoneErrorMessage = document.querySelector('.phone-error-message');
+          const termsCheckbox = document.getElementById('terms-agree');
+          const termsErrorMessage = document.querySelector('.terms-error-message');
+        
+          // Format phone number as user types
+          if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+              // Get input value and remove non-digits
+              let input = this.value.replace(/\D/g, '');
+              let formattedInput = '';
+              
+              // Format with dashes: XXX-XXX-XXXX
+              if (input.length > 0) {
+                formattedInput = input.substring(0, 3);
+                
+                if (input.length > 3) {
+                  formattedInput += '-' + input.substring(3, 6);
+                }
+                
+                if (input.length > 6) {
+                  formattedInput += '-' + input.substring(6, 10);
+                }
+              }
+              
+              // Update the input field with formatted value
+              this.value = formattedInput;
+              
+              // Store in user answers
+              userAnswers.phone = formattedInput;
+            });
+            
+            // Validate on blur
+            phoneInput.addEventListener('blur', validatePhone);
+          }
+        
+          // Function to validate phone number
+          function validatePhone() {
+            if (!phoneInput) return true; // Skip if element doesn't exist
+            
+            const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+            const phone = phoneInput.value.trim();
+            
+            if (!phone) {
+              // Phone is optional, so empty is valid
+              phoneErrorMessage.style.display = 'none';
+              return true;
+            } else if (!phonePattern.test(phone)) {
+              phoneErrorMessage.textContent = 'Please enter a valid US phone number in format XXX-XXX-XXXX';
+              phoneErrorMessage.style.display = 'block';
+              return false;
+            } else {
+              phoneErrorMessage.style.display = 'none';
+              return true;
+            }
+          }
+        
+          // Function to validate terms checkbox
+          function validateTerms() {
+            if (!termsCheckbox) return true; // Skip if element doesn't exist
+            
+            // Only validate terms if user is trying to get results (not skip)
+            const getResultsBtn = document.getElementById('get-results-btn');
+            if (getResultsBtn && getResultsBtn.classList.contains('clicked')) {
+              if (!termsCheckbox.checked) {
+                termsErrorMessage.style.display = 'block';
+                return false;
+              } else {
+                termsErrorMessage.style.display = 'none';
+                userAnswers.termsAgreed = true;
+                return true;
+              }
+            } else {
+              // Terms not required for skip
+              termsErrorMessage.style.display = 'none';
+              return true;
+            }
+          }
+        
+          // Add event listener for terms checkbox
+          if (termsCheckbox) {
+            termsCheckbox.addEventListener('change', validateTerms);
+          }
+        
+          // Start quiz button event listener
+          document.getElementById('start-quiz-button')?.addEventListener('click', function() {
+            try {
+              goToNextScreen();
+            } catch (e) {
+              console.error('🚨 goToNextScreen threw an error:', e);
+            }
+          });
+        
+
+        
+          // Add event listeners to all quiz options
+          document.querySelectorAll('#shopify-quiz .option').forEach(option => {
+            option.addEventListener('click', function() {
+              // Unselect other options in the same question
+              const questionScreen = this.closest('.quiz-screen');
+              questionScreen.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+              });
+              
+              // Select current option
+              this.classList.add('selected');
+              
+              // Enable the next button
+              const nextButton = questionScreen.querySelector('.next-button');
+              if (nextButton) {
+                nextButton.disabled = false;
+              }
+              
+              // Store the answer based on which question is being answered
+              const questionId = questionScreen.id;
+              const inputElement = this.querySelector('input');
+              
+              if (questionId === 'question-1') {
+                // Main question that determines the track
+                userAnswers.q1 = inputElement.value;
+                userAnswers.track = inputElement.value;
+                currentTrack = inputElement.value;
+              } else if (questionId.includes('question-2')) {
+                userAnswers.q2 = inputElement.value;
+              } else if (questionId.includes('question-3')) {
+                userAnswers.q3 = inputElement.value;
+              } else if (questionId.includes('question-4')) {
+                userAnswers.q4 = inputElement.value;
+              } else if (questionId.includes('question-5')) {
+                userAnswers.q5 = inputElement.value;
+                
+                // The final question helps determine personality type
+                personalityType = determinePersonalityType(currentTrack, userAnswers);
+              }
+              
+              // Check the input
+              inputElement.checked = true;
+            });
+          });
+        
+          // Add event listeners to all next buttons (excluding email and phone form submit buttons)
+          document.querySelectorAll('#shopify-quiz .next-button').forEach(button => {
+            // Skip only the submit buttons in email-form and phone-form
+            if (button.type === 'submit' && (
+                button.closest('#email-form') || 
+                button.closest('#phone-form')
+              )) {
+              return;
+            }
+            button.addEventListener('click', function() {
+              goToNextScreen();
+            });
+          });
+        
+          // Email form submission
+          const emailForm = document.getElementById('email-form');
+          if (emailForm) {
+            emailForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+              
+              const emailValid = validateEmail();
+              
+              if (!emailValid) {
+                return;
+              }
+              
+              // Store email and proceed to phone screen
+              const email = document.getElementById('klaviyo-email').value;
+              userAnswers.email = email;
+              
+              goToNextScreen();
+            });
+          }
+
+          // Phone form submission (Get My Results button)
+          const phoneForm = document.getElementById('phone-form');
+          if (phoneForm) {
+            phoneForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+              
+              // Mark that user clicked get results button
+              document.getElementById('get-results-btn').classList.add('clicked');
+              
+              const phoneValid = validatePhone();
+              const termsValid = validateTerms();
+              
+              if (!phoneValid || !termsValid) {
+                return;
+              }
+              
+              // Get phone and format it for storage - digits only
+              const phoneDigitsOnly = phoneInput.value.trim().replace(/\D/g, '');
+              userAnswers.phone = phoneDigitsOnly;
+              
+              // Submit to Klaviyo with phone
+              submitToKlaviyo(userAnswers.email, userAnswers, personalityType, phoneDigitsOnly);
+              
+              // Navigate to results screen
+              navigateToResults();
+            });
+          }
+
+          // Skip phone button
+          const skipPhoneBtn = document.getElementById('skip-phone-btn');
+          if (skipPhoneBtn) {
+            skipPhoneBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              
+              // Submit to Klaviyo without phone
+              submitToKlaviyo(userAnswers.email, userAnswers, personalityType, '');
+              
+              // Navigate to results screen
+              navigateToResults();
+            });
+          }
+
+          // Klaviyo form submission (hidden form for final submission)
+          const klaviyoForm = document.getElementById('klaviyo-quiz-form');
+          if (klaviyoForm) {
+            klaviyoForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Set hidden field values
+            document.getElementById('track-value').value = userAnswers.track;
+            document.getElementById('personality-value').value = personalityType;
+            
+            // Create hidden name field if it doesn't exist
+            let nameInput = this.querySelector('input[name="name"]');
+            if (!nameInput) {
+              nameInput = document.createElement('input');
+              nameInput.type = 'hidden';
+              nameInput.name = 'name';
+              this.appendChild(nameInput);
+            }
+            nameInput.value = userAnswers.name;
+        
+            document.getElementById('q1-answer').value = userAnswers.q1;
+            document.getElementById('q2-answer').value = userAnswers.q2;
+            document.getElementById('q3-answer').value = userAnswers.q3;
+            document.getElementById('q4-answer').value = userAnswers.q4;
+            document.getElementById('q5-answer').value = userAnswers.q5;
+            
+            // Create hidden phone field if it doesn't exist
+            let phoneValueField = this.querySelector('input[name="phone_value"]');
+            if (!phoneValueField) {
+              phoneValueField = document.createElement('input');
+              phoneValueField.type = 'hidden';
+              phoneValueField.id = 'phone-value';
+              phoneValueField.name = 'phone_value';
+              this.appendChild(phoneValueField);
+            }
+            phoneValueField.value = userAnswers.phone || '';
+            
+            // Submit to Klaviyo
+            submitToKlaviyo(userAnswers.email, userAnswers, personalityType, userAnswers.phone || '');
+            });
+          }
+        
+          // Function to navigate to results screen
+          function navigateToResults() {
+            
+            // Hide current screen
+            screens[currentScreen].classList.remove('active');
+            
+            // Find the results screen
+            const resultsScreenId = `result-${currentTrack}-${personalityType}`;
+            let resultsScreenIndex = -1;
+            
+            for (let i = 0; i < screens.length; i++) {
+              if (screens[i].id === resultsScreenId) {
+                resultsScreenIndex = i;
+                break;
+              }
+            }
+            
+            if (resultsScreenIndex === -1) {
+              console.error('Results screen not found:', resultsScreenId);
+              return;
+            }
+            
+            
+            // Show the results screen
+            screens[resultsScreenIndex].classList.add('active');
+            currentScreen = resultsScreenIndex;
+            
+            // Update progress bar to 100%
+            updateProgressBar();
+          }
+
+          // Navigation function to move to next screen
+          function goToNextScreen() {
+            const currentScreenId = screens[currentScreen].id;
+            let nextScreenId;
+            
+            // For the first few screens, follow the fixed sequence
+            const currentIndex = screenSequence.indexOf(currentScreenId);
+            if (currentIndex >= 0 && currentIndex < screenSequence.length - 1) {
+              // We're in the fixed sequence, go to next screen in sequence
+              nextScreenId = screenSequence[currentIndex + 1];
+            } 
+            // Handle track selection to first track-specific question
+            else if (currentScreenId === 'question-1') {
+              nextScreenId = `${currentTrack}-question-2`;
+            }
+            // Handle track-specific questions
+            else if (currentScreenId.includes('-question-')) {
+              const match = currentScreenId.match(/(\w+)-question-(\d+)/);
+              if (match) {
+                const track = match[1];
+                const questionNum = parseInt(match[2]);
+                
+                if (questionNum < 5) {
+                  // Go to next question in the same track
+                  nextScreenId = `${track}-question-${questionNum + 1}`;
+                } else if (questionNum === 5) {
+                  // From last track-specific question, go to email screen
+                  nextScreenId = 'email-screen';
+                }
+              }
+            }
+            // Handle email screen to phone screen navigation
+            else if (currentScreenId === 'email-screen') {
+              nextScreenId = 'phone-screen';
+            }
+            // Handle phone screen to results navigation
+            else if (currentScreenId === 'phone-screen') {
+              // This is handled by form submission, but for completeness:
+              nextScreenId = `result-${currentTrack}-${personalityType}`;
+            }
+            
+            if (!nextScreenId) {
+              console.warn('Could not determine next screen for:', currentScreenId);
+              return;
+            }
+            
+            // Find the next screen index
+            let nextScreenIndex = -1;
+            for (let i = 0; i < screens.length; i++) {
+              if (screens[i].id === nextScreenId) {
+                nextScreenIndex = i;
+                break;
+              }
+            }
+            
+            if (nextScreenIndex === -1) {
+              console.error('Next screen not found:', nextScreenId);
+              return;
+            }
+            
+            // Hide current screen
+            screens[currentScreen].classList.remove('active');
+            
+            // Show the next screen
+            screens[nextScreenIndex].classList.add('active');
+            currentScreen = nextScreenIndex;
+            
+            // Update progress bar
+            updateProgressBar();
+          }
+        
+          // Update progress bar based on current screen
+          function updateProgressBar() {
+            // For this multi-track quiz, base progress on how far we are in the current track
+            let progressPercentage;
+            
+            // Get the current screen element
+            const currentScreenElement = screens[currentScreen];
+            
+            if (currentScreenElement.id === 'welcome-screen') {
+              progressPercentage = 0;
+            } else if (currentScreenElement.id === 'name-question') {
+              progressPercentage = 14; // Name question is early in the process
+            } else if (currentScreenElement.id === 'question-1') {
+              progressPercentage = 43; 
+            } else if (currentScreenElement.id.includes('question-2')) {
+              progressPercentage = 57; 
+            } else if (currentScreenElement.id.includes('question-3')) {
+              progressPercentage = 71; 
+            } else if (currentScreenElement.id.includes('question-4')) {
+              progressPercentage = 80; 
+            } else if (currentScreenElement.id === 'email-screen') {
+              progressPercentage = 90;
+            } else if (currentScreenElement.id === 'phone-screen') {
+              progressPercentage = 95;
+            } else {
+              progressPercentage = 100; // Completed
+            }
+            
+            progress.style.width = progressPercentage + '%';
+          }
+        
+          // Personality type determination based on quiz answers
+          function determinePersonalityType(track, userAnswers) {
+            // Define scoring weights for each question in each track
+            const scoreWeights = {
+              'cat': {
+                'q2': {
+                  'avoid': { avoidant: 3, silent: 0, lover: 0 },
+                  'tolerate': { avoidant: 0, silent: 3, lover: 0 },
+                  'interact': { avoidant: 0, silent: 0, lover: 3 }
+                },
+                'q3': {
+                  'option1': { avoidant: 2, silent: 1, lover: 0 },
+                  'option2': { avoidant: 1, silent: 2, lover: 1 },
+                  'option3': { avoidant: 0, silent: 1, lover: 2 }
+                },
+                'q4': {
+                  'option1': { avoidant: 2, silent: 0, lover: 0 },
+                  'option2': { avoidant: 0, silent: 2, lover: 0 },
+                  'option3': { avoidant: 0, silent: 0, lover: 2 }
+                },
+                'q5': {
+                  'avoidant': { avoidant: 5, silent: 0, lover: 0 },
+                  'silent': { avoidant: 0, silent: 5, lover: 0 },
+                  'lover': { avoidant: 0, silent: 0, lover: 5 }
+                }
+              },
+              'dog': {
+                'q2': {
+                  'avoid': { avoidant: 3, silent: 0, lover: 0 },
+                  'tolerate': { avoidant: 0, silent: 3, lover: 0 },
+                  'interact': { avoidant: 0, silent: 0, lover: 3 }
+                },
+                'q3': {
+                  'option1': { avoidant: 2, silent: 1, lover: 0 },
+                  'option2': { avoidant: 1, silent: 2, lover: 1 },
+                  'option3': { avoidant: 0, silent: 1, lover: 2 }
+                },
+                'q4': {
+                  'option1': { avoidant: 2, silent: 0, lover: 0 },
+                  'option2': { avoidant: 0, silent: 2, lover: 0 },
+                  'option3': { avoidant: 0, silent: 0, lover: 2 }
+                },
+                'q5': {
+                  'avoidant': { avoidant: 5, silent: 0, lover: 0 },
+                  'silent': { avoidant: 0, silent: 5, lover: 0 },
+                  'lover': { avoidant: 0, silent: 0, lover: 5 }
+                }
+              },
+              'dust': {
+                'q2': {
+                  'new': { aware: 3, silent: 0, battler: 0 },
+                  'years': { aware: 0, silent: 3, battler: 0 },
+                  'long': { aware: 0, silent: 0, battler: 3 }
+                },
+                'q3': {
+                  'option1': { aware: 2, silent: 1, battler: 0 },
+                  'option2': { aware: 1, silent: 2, battler: 1 },
+                  'option3': { aware: 0, silent: 1, battler: 2 }
+                },
+                'q4': {
+                  'option1': { aware: 2, silent: 0, battler: 0 },
+                  'option2': { aware: 0, silent: 2, battler: 0 },
+                  'option3': { aware: 0, silent: 0, battler: 2 }
+                },
+                'q5': {
+                  'aware': { aware: 5, silent: 0, battler: 0 },
+                  'silent': { aware: 0, silent: 5, battler: 0 },
+                  'battler': { aware: 0, silent: 0, battler: 5 }
+                }
+              },
+              'pollen': {
+                'q2': {
+                  'severe': { seasonal: 3, reluctant: 0, watcher: 0 },
+                  'moderate': { seasonal: 0, reluctant: 3, watcher: 0 },
+                  'mild': { seasonal: 0, reluctant: 0, watcher: 3 }
+                },
+                'q3': {
+                  'option1': { seasonal: 2, reluctant: 1, watcher: 0 },
+                  'option2': { seasonal: 1, reluctant: 2, watcher: 1 },
+                  'option3': { seasonal: 0, reluctant: 1, watcher: 2 }
+                },
+                'q4': {
+                  'option1': { seasonal: 2, reluctant: 0, watcher: 0 },
+                  'option2': { seasonal: 0, reluctant: 2, watcher: 0 },
+                  'option3': { seasonal: 0, reluctant: 0, watcher: 2 }
+                },
+                'q5': {
+                  'seasonal': { seasonal: 5, reluctant: 0, watcher: 0 },
+                  'reluctant': { seasonal: 0, reluctant: 5, watcher: 0 },
+                  'watcher': { seasonal: 0, reluctant: 0, watcher: 5 }
+                }
+              }
+            };
+        
+            // Get the personality types for the current track
+            let personalityTypes = [];
+            if (track === 'cat') {
+              personalityTypes = ['avoidant', 'silent', 'lover'];
+            } else if (track === 'dog') {
+              personalityTypes = ['avoidant', 'silent', 'lover'];
+            } else if (track === 'dust') {
+              personalityTypes = ['aware', 'silent', 'battler'];
+            } else if (track === 'pollen') {
+              personalityTypes = ['seasonal', 'reluctant', 'watcher'];
+            }
+        
+            // Initialize scores for each personality type
+            let scores = {};
+            personalityTypes.forEach(type => {
+              scores[type] = 0;
+            });
+        
+            // Add a tiny random value to each score to prevent exact ties
+            personalityTypes.forEach(type => {
+              scores[type] += Math.random() * 0.01; // Add a small random value (less than 0.01)
+            });
+        
+            // Calculate scores for each personality type based on answers
+            ['q2', 'q3', 'q4', 'q5'].forEach(question => {
+              const answer = userAnswers[question];
+              // Only process if answer exists and we have weights for it
+              if (answer && scoreWeights[track] && 
+                  scoreWeights[track][question] && 
+                  scoreWeights[track][question][answer]) {
+                
+                // Add the appropriate weights to each personality score
+                const weights = scoreWeights[track][question][answer];
+                Object.keys(weights).forEach(type => {
+                  if (personalityTypes.includes(type)) {
+                    scores[type] += weights[type];
+                  }
+                });
+              }
+            });
+        
+            // Determine the winning personality (highest score)
+            let winningType = personalityTypes[0];
+            let highestScore = scores[winningType];
+        
+            personalityTypes.forEach(type => {
+              if (scores[type] > highestScore) {
+                highestScore = scores[type];
+                winningType = type;
+              }
+            });
+            
+            return winningType;
+          }
+        
+          // Submit quiz results to server
+          function submitToKlaviyo(email, quizData, personality, phone) {
+            // Prepare the payload for our EC2 server
+            const requestPayload = {
+              email: email,
+              phone_number: phone,
+              first_name: quizData.name,
+              track: quizData.track,
+              personality: personality,
+              answers: {
+                q1: quizData.q1,
+                q2: quizData.q2,
+                q3: quizData.q3,
+                q4: quizData.q4,
+                q5: quizData.q5
+              }
+            };
+            
+            // Your EC2 instance URL with ngrok forwarding
+            const EC2_SERVER_URL = 'https://f721-18-117-169-254.ngrok-free.app/submit-quiz';
+            
+            // Make the request to the EC2 server
+            fetch(EC2_SERVER_URL, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(requestPayload)
+            })
+            .then(response => {              
+              if (!response.ok) {
+                return response.json().then(errorData => {
+                  console.error('Server Error Response:', errorData);
+                  throw new Error(`Server Error: ${response.status} ${response.statusText}`);
+                });
+              }
+              
+              return response.json();
+            })
+            .then(data => {
+              // Show the appropriate result screen
+              document.getElementById('email-screen').classList.remove('active');
+              const resultScreenId = 'result-' + quizData.track + '-' + personality;
+              
+              const resultScreen = document.getElementById(resultScreenId);
+              if (resultScreen) {
+                resultScreen.classList.add('active');
+              } else {
+                console.error('Result screen not found:', resultScreenId);
+              }
+            })
+            .catch(error => {
+              console.error('Quiz submission error:', error.message);
+              
+              // Still show results even if server/API fails
+            })
+           .catch(error => {
+             console.error('Quiz submission error:', error.message);
+             
+             // Still show results even if server/API fails
+             document.getElementById('email-screen').classList.remove('active');
+             const resultScreenId = 'result-' + quizData.track + '-' + personality;
+             document.getElementById(resultScreenId).classList.add('active');
+           });
+         }
+        
+         // Enhanced name validation for the quiz
+         function validateName() {
+           const nameInput = document.getElementById('user-name');
+           const nextButton = document.querySelector('#name-question .next-button');
+           const name = nameInput.value.trim();
+        
+           let nameErrorMessage = document.querySelector('.name-error-message');
+           if (!nameErrorMessage) {
+             nameErrorMessage = document.createElement('div');
+             nameErrorMessage.className = 'name-error-message';
+             nameErrorMessage.style.color = 'red';
+             nameErrorMessage.style.display = 'none';
+             nameErrorMessage.style.marginTop = '5px';
+             nameErrorMessage.style.fontSize = '14px';
+             nameInput.parentNode.appendChild(nameErrorMessage);
+           }
+        
+           if (name.length === 0) {
+             nameErrorMessage.textContent = 'Please enter your name';
+             nameErrorMessage.style.display = 'block';
+             nextButton.disabled = true;
+             return false;
+           }
+        
+           if (name.length < 2) {
+             nameErrorMessage.textContent = 'Please enter your full name';
+             nameErrorMessage.style.display = 'block';
+             nextButton.disabled = true;
+             return false;
+           }
+        
+           const fakeNamePatterns = [
+             /^[a-z]$/i,
+             /^[^a-z]+$/i,
+             /^(test|name|asdf|qwerty|abc|xyz|user|none|nil|null|undefined|false|true)$/i,
+             /^[a-z]{1,2}[0-9]*$/i,
+             /^[0-9]+$/,
+             /^aa+$/i,
+             /^(.)\1+$/ 
+           ];
+        
+           if (fakeNamePatterns.some(pattern => pattern.test(name))) {
+             nameErrorMessage.textContent = 'Please enter a valid name';
+             nameErrorMessage.style.display = 'block';
+             nextButton.disabled = true;
+             return false;
+           }
+        
+           // ✅ Passed all checks
+           nameErrorMessage.style.display = 'none';
+           nextButton.disabled = false;
+           return true;
+         }
+        
+         const shareImages = {
+           "result-cat-avoidant": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-feline-avoidant-pinterestshare.jpg?v=1744573088",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-feline-avoidant-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-feline-avoidant-share.jpg?v=1744573087"
+           },
+           "result-cat-silent": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/silent-cat-sufferer-pinterestshare.jpg?v=1744573088",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/silent-cat-sufferer-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/silent-cat-sufferer-share.jpg?v=1744573087"
+           },
+           "result-cat-lover": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/pained-cat-lover-pinterestshare.jpg?v=1744573088",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/pained-cat-lover-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/pained-cat-lover-share.jpg?v=1744573087"
+           },
+           "result-dog-avoidant": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-canine-avoidant-pinterestshare.jpg?v=1744573088",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-canine-avoidant-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-canine-avoidant-share.jpg?v=1744573087"
+           },
+           "result-dog-silent": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/silent-dog-sufferer-pinterestshare.jpg?v=1744573088",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/silent-dog-sufferer-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/silent-dog-sufferer-share.jpg?v=1744573087"
+           },
+           "result-dog-lover": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/pained-dog-lover-pinterestshare.jpg?v=1744573088",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/pained-dog-lover-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/pained-dog-lover-share.jpg?v=1744573087"
+           },
+           "result-dust-aware": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-newly-aware-pinterestshare.jpg?v=1744573088",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-newly-aware-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-newly-aware-share.jpg?v=1744573087"
+           },
+           "result-dust-silent": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-conscientious-cleaner-pinterestshare.jpg?v=1744573087",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-conscientious-cleaner-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-conscientious-cleaner-share.jpg?v=1744573087"
+           },
+           "result-dust-battler": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-bedtime-battler-pinterestshare.jpg?v=1744573088",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-bedtime-battler-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-bedtime-battler-share.jpg?v=1744573087"
+           },
+           "result-pollen-reluctant": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-reluctant-medicator-pinterestshare.jpg?v=1744573087",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-reluctant-medicator-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-reluctant-medicator-share.jpg?v=1744573087"
+           },
+           "result-pollen-watcher": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-weather-watcher-pinterestshare.jpg?v=1744573088",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-weather-watcher-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-weather-watcher-share.jpg?v=1744573087"
+           },
+           "result-pollen-seasonal": {
+             pinterest: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-seasonal-sufferer-pinterestshare.jpg?v=1744573088",
+             instagram: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-seasonal-sufferer-instagramshare.jpg?v=1744573088",
+             opengraph: "https://cdn.shopify.com/s/files/1/0814/8369/4394/files/the-seasonal-sufferer-share.jpg?v=1744573087"
+           }
+         };
+        
+         // Update share buttons for the given result ID
+         function setupSocialSharing(resultId) {
+           const imageSet = shareImages[resultId];
+           if (!imageSet) return;
+        
+           const resultElement = document.getElementById(resultId);
+        
+           const pinterestBtn = resultElement.querySelector(".pinterest");
+           if (pinterestBtn) {
+             const shareURL = `https://pinterest.com/pin/create/button/?media=${encodeURIComponent(imageSet.pinterest)}&url=${encodeURIComponent(window.location.href)}&description=Check out my allergy personality!`;
+             pinterestBtn.setAttribute("href", shareURL);
+             pinterestBtn.setAttribute("target", "_blank");
+           }
+        
+           const instaBtn = resultElement.querySelector(".instagram");
+           if (instaBtn) {
+             instaBtn.setAttribute("href", imageSet.instagram);
+             instaBtn.setAttribute("download", "");
+           }
+        
+           const xBtn = resultElement.querySelector(".x");
+           if (xBtn) {
+             xBtn.setAttribute("href", `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out my allergy personality!`);
+             xBtn.setAttribute("target", "_blank");
+           }
+        
+           const fbBtn = resultElement.querySelector(".facebook");
+           if (fbBtn) {
+             fbBtn.setAttribute("href", `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`);
+             fbBtn.setAttribute("target", "_blank");
+           }
+         }
+        
+         // Call this when a result screen is shown
+         function showResultScreen(resultId) {
+           document.querySelectorAll('.quiz-screen.active').forEach(screen => {
+             screen.classList.remove('active');
+           });
+        
+           const screen = document.getElementById(resultId);
+           if (screen) {
+             screen.classList.add('active');
+             setupSocialSharing(resultId);
+           }
+         }
+        
+        });
+        
+          </script>
+</body>
+</html>
