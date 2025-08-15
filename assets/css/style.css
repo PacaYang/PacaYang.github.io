@@ -1,4 +1,67 @@
 /* Reset and base styles */
+/* Regular 
+@font-face {
+    font-family: 'Times New Roman MT Std';
+    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Times New Roman MT Std';
+    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Times New Roman MT Std';
+    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+*/
+
+  /* Regular */
+@font-face {
+    font-family: 'Times New Roman MT Std';
+    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd-Cond.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Bold */
+  @font-face {
+    font-family: 'Times New Roman MT Std';
+    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd-BoldCond.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  /* Italic */
+  @font-face {
+    font-family: 'Times New Roman MT Std';
+    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd-CondIt.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  /* Bold Italic */
+  @font-face {
+    font-family: 'Times New Roman MT Std';
+    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd-BoldIt.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +69,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Times New Roman MT Std', serif;
     line-height: 1.6;
     color: #333;
     background-color: #f9f9f9;
@@ -14,6 +77,18 @@ body {
 
 main{
     min-height:700px;
+}
+
+.navbar {
+    transition: top 0.5s;
+    height: var(--header-height);
+    width: 100;
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+.navbar-brand img {
+    height: 100px;
 }
 
 img{
@@ -46,7 +121,6 @@ header {
 }
 
 nav {
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
@@ -102,6 +176,7 @@ main {
     padding: 2rem;
 }
 
+/*
 .hero {
     text-align: center;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -110,6 +185,7 @@ main {
     border-radius: 10px;
     margin-bottom: 3rem;
 }
+*/
 
 .hero h2 {
     font-size: 2.5rem;

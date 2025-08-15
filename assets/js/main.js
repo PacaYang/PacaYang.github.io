@@ -1,34 +1,26 @@
 // Main JavaScript file for Allergy Health Daily
 
-// Head Component - Insert favicon and stylesheets
-function insertHeadElements(pageType = 'root') {
-    // Check if head elements already exist to prevent duplicates
-    if (document.querySelector('link[rel="icon"]')) {
+// Insert Header Component
+function insertHeader() {
+    // Check if header already exists
+    if (document.getElementById('mainHeader')) {
         return; // Already inserted
     }
-    
-    // Determine the correct path based on page type
-    const assetPath = pageType === 'blog' ? '../assets' : 'assets';
-    
-    // Create the head elements
-    const headElements = `
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="${assetPath}/images/favicon.ico">
-        <link rel="icon" type="image/png" sizes="16x16" href="${assetPath}/images/favicon-16x16.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="${assetPath}/images/favicon-32x32.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="${assetPath}/images/apple-touch-icon.png">
-        <link rel="manifest" href="${assetPath}/images/site.webmanifest">
 
-        <!-- Additional Meta Tags -->
-        <meta name="theme-color" content="#2c5aa0">
-        <meta name="msapplication-TileColor" content="#2c5aa0">
+    // Define the header HTML
+    const headerHTML = `
+        <!-- Header -->
+        <nav id="mainHeader" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container justify-content-center">
+                <a class="navbar-brand mx-auto" href="#">
+                    <img src="https://via.placeholder.com/150x40?text=Logo" alt="Logo">
+                </a>
+            </div>
+        </nav>
     `;
-    
-    // Insert the elements into the head
-    document.head.insertAdjacentHTML('beforeend', headElements);
-    
-    // Load stylesheets with proper loading detection
-    loadStylesheets(assetPath);
+
+    // Insert at the very beginning of body
+    document.body.insertAdjacentHTML('afterbegin', headerHTML);
 }
 
 // Load stylesheets and show content when ready
@@ -142,7 +134,7 @@ function insertFooter(pageType = 'root') {
     }
     
     // Insert head elements immediately
-    insertHeadElements(pageType);
+    insertHeader(pageType);
     
     // Insert navigation and footer when DOM is ready
     if (document.readyState === 'loading') {
@@ -183,3 +175,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+// control header to hide when scroll down
+
+let lastScrollTop = 0;
+const header = document.getElementById("mainHeader");
+
+window.addEventListener("scroll", function () {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (scrollTop > lastScrollTop) {
+    // Scrolling down
+    header.style.top = "-100%";
+  } else {
+    // Scrolling up
+    header.style.top = "0";
+  }
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Avoid negative values
+}, false);
