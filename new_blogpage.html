@@ -87,8 +87,8 @@
     }
 
     .icon {
-      width: 40px;
-      height: 40px;
+        width: clamp(2rem, 4vw, 2.5rem);
+        height: clamp(2rem, 4vw, 2.5rem);
       display: inline-grid;
       place-items: center;
       border-radius: 50%;
@@ -98,7 +98,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.12);
       transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
-    .icon svg { width: 20px; height: 20px; fill: currentColor; }
+    .icon svg { width: 50%; height: 50%; fill: currentColor; }
     .icon:hover { transform: translateY(-1px); background: #222; box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
 
     .btn-save {
@@ -331,7 +331,7 @@ Social walks: avoid crowded patios at first; loop quiet residential blocks aroun
           </div>
         </div>
 
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-4 d-none d-lg-block">
           Right column (~33%)
         </div>
       </div>
