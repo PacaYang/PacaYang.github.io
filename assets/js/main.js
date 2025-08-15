@@ -1,27 +1,37 @@
 // Main JavaScript file for Allergy Health Daily
 
-// Insert Header Component
-function insertHeader() {
-    // Check if header already exists
-    if (document.getElementById('mainHeader')) {
+
+// Head Component - Insert favicon and stylesheets
+function insertHeadElements(pageType = 'root') {
+    // Check if head elements already exist to prevent duplicates
+    if (document.querySelector('link[rel="icon"]')) {
         return; // Already inserted
     }
+    
+    // Determine the correct path based on page type
+    const assetPath = pageType === 'blog' ? '../assets' : 'assets';
+    
+    // Create the head elements
+    const headElements = `
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="${assetPath}/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="16x16" href="${assetPath}/images/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="${assetPath}/images/favicon-32x32.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="${assetPath}/images/apple-touch-icon.png">
+        <link rel="manifest" href="${assetPath}/images/site.webmanifest">
 
-    // Define the header HTML
-    const headerHTML = `
-        <!-- Header -->
-        <nav id="mainHeader" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container justify-content-center">
-                <a class="navbar-brand mx-auto" href="#">
-                    <img src="https://via.placeholder.com/150x40?text=Logo" alt="Logo">
-                </a>
-            </div>
-        </nav>
+        <!-- Additional Meta Tags -->
+        <meta name="theme-color" content="#2c5aa0">
+        <meta name="msapplication-TileColor" content="#2c5aa0">
     `;
-
-    // Insert at the very beginning of body
-    document.body.insertAdjacentHTML('afterbegin', headerHTML);
+    
+    // Insert the elements into the head
+    document.head.insertAdjacentHTML('beforeend', headElements);
+    
+    // Load stylesheets with proper loading detection
+    loadStylesheets(assetPath);
 }
+
 
 // Load stylesheets and show content when ready
 function loadStylesheets(assetPath) {
@@ -71,26 +81,23 @@ function loadStylesheets(assetPath) {
 function insertNavigation(pageType = 'root', currentPage = '') {
     // Determine the correct paths based on page type
     const homePath = pageType === 'blog' ? '../index.html' : 'index.html';
-    const logoPath = pageType === 'blog' ? '../assets/images/allergyhealthdailylogo.png' : 'assets/images/allergyhealthdailylogo.png';
-    const blogPath = pageType === 'blog' ? 'index.html' : 'blog/index.html';
-    const quizPath = pageType === 'blog' ? '../quiz.html' : 'quiz.html';
-    
-    // Create navigation HTML
-    const navigationHTML = `
-        <header>
-            <nav>
-                <a href="${homePath}"><img src="${logoPath}" alt="Allergy Health Daily Logo" id="logo"></a>
-                <ul>
-                    <li><a href="${blogPath}" ${currentPage === 'blog' ? 'class="active"' : ''}>Blogs</a></li>
-                    <li><a href="${quizPath}" ${currentPage === 'quiz' ? 'class="active"' : ''}>Find Out Your Allergy Personality</a></li>
-                </ul>
-            </nav>
-        </header>
+    const logoPath = pageType === 'blog' ? 'assets/images/GTSLogo.png' : 'assets/images/logo.png';
+  
+    // Define the header HTML (now actually using the paths)
+    const navHTML = `
+        <nav id="mainHeader" class="navbar navbar-expand-lg border-bottom fixed-top">
+            <div class="container justify-content-center">
+                <a class="navbar-brand mx-auto" href="...">
+                    <img src="assets/images/GTSLogo.png" alt="Logo">
+                </a>
+            </div>
+        </nav>
     `;
-    
-    // Insert navigation at the beginning of body
-    document.body.insertAdjacentHTML('afterbegin', navigationHTML);
-}
+  
+    // Insert at the very beginning of body
+    document.body.insertAdjacentHTML('afterbegin', navHTML);
+  }
+  
 
 // Footer Component - Insert footer HTML
 function insertFooter(pageType = 'root') {
@@ -134,7 +141,7 @@ function insertFooter(pageType = 'root') {
     }
     
     // Insert head elements immediately
-    insertHeader(pageType);
+    insertHeadElements(pageType);
     
     // Insert navigation and footer when DOM is ready
     if (document.readyState === 'loading') {
@@ -156,6 +163,7 @@ function insertFooter(pageType = 'root') {
         }
     }
 })();
+
 
 // Wait for DOM to be fully loaded for additional functionality
 document.addEventListener('DOMContentLoaded', function() {
