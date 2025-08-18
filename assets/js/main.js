@@ -58,13 +58,6 @@ function loadStylesheets(assetPath) {
     // Fallback: Show content after 2 seconds even if CSS doesn't load
     setTimeout(showContent, 2000);
     
-    // Load main stylesheet
-    const mainCSS = document.createElement('link');
-    mainCSS.rel = 'stylesheet';
-    mainCSS.href = `${assetPath}/css/style.css`;
-    mainCSS.onload = onStylesheetLoad;
-    mainCSS.onerror = onStylesheetLoad; // Show content even if CSS fails
-    document.head.appendChild(mainCSS);
     
     // Load Bootstrap CSS
     const bootstrapCSS = document.createElement('link');
@@ -75,6 +68,14 @@ function loadStylesheets(assetPath) {
     bootstrapCSS.onload = onStylesheetLoad;
     bootstrapCSS.onerror = onStylesheetLoad; // Show content even if CSS fails
     document.head.appendChild(bootstrapCSS);
+
+    // Load main stylesheet
+    const mainCSS = document.createElement('link');
+    mainCSS.rel = 'stylesheet';
+    mainCSS.href = `${assetPath}/css/style.css`;
+    mainCSS.onload = onStylesheetLoad;
+    mainCSS.onerror = onStylesheetLoad; // Show content even if CSS fails
+    document.head.appendChild(mainCSS);
 }
 
 // Navigation Component - Insert navigation HTML
@@ -87,7 +88,7 @@ function insertNavigation(pageType = 'root', currentPage = '') {
     const navHTML = `
         <nav id="mainHeader" class="navbar navbar-expand-lg border-bottom fixed-top">
             <div class="container justify-content-center">
-                <a class="navbar-brand mx-auto" href="...">
+                <a class="navbar-brand mx-auto" href="https://glowthriveshine.com">
                     <img src="assets/images/GTSLogo.png" alt="Logo">
                 </a>
             </div>
@@ -111,7 +112,7 @@ function insertFooter(pageType = 'root') {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p>&copy; 2025 Allergy Health Daily. All rights reserved.</p>
+                        <p>&copy; 2025 GlowThriveShine. All rights reserved.</p>
                         <p>
                             <a href="${privacyPath}">Privacy Policy</a> | 
                             <a href="${termsPath}">Terms of Service</a>

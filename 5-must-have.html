@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="GlowThriveShine">
   <title>GlowThriveShine</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="assets/js/main.js" defer></script>
+
 
   <script>document.documentElement.className += ' js';</script>
   <script src="https://static.runconverge.com/pixels/3XNqiu.js" async></script>
@@ -20,13 +20,14 @@
   <style>
     :root {
       --header-height: 124px;
+      --bs-font-sans-serif: "Times New Roman MT Std","Times New Roman",serif;
+      --bs-body-font-family: var(--bs-font-sans-serif);
     }
 
     body {
       overflow-x: hidden; /* prevents horizontal scrollbar */
       padding-top: var(--header-height); /* keep content below fixed header */
       line-height: 1.5;
-      font-family: "Times New Roman";
     }
 
     /* Page stack */
@@ -37,7 +38,7 @@
       gap: 24px;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 24px 16px 64px;
+      padding: 24px 16px 0px;
     }
 
     .editor-photo {
@@ -293,8 +294,6 @@
    
   </style>
 
-  <script src="assets/js/main.js" defer></script>
-
 </head>
 <body>
 
@@ -382,7 +381,7 @@
                 <li>Breaks down allergens from dust mites</li>
                 <li>Pet-safe and kid-friendly formula</li>
               </ul>
-              📦 <b>Shop Pacagen Dust Spray</b> → <a href="https://pacagen.com/products/dust-allergen-neutralizing-spray">[Shop now]</a>
+              📦 <b>Shop Pacagen Dust Spray</b> → <a href="https://pacagen.com/products/dust-allergen-neutralizing-spray">Shop now</a>
             </p>
 
             <div class="d-flex justify-content-center">
@@ -414,7 +413,27 @@
             <a href="https://pacagen.com/products/dust-allergen-neutralizing-spray">Shop Pacagen Dust Spray Now</a>
             </p>
             
-
+            <div>
+              <hr class="line">
+              <h2>Meet your guide</h2>
+              <div class="row">
+                <!-- First row: image -->
+                <div class="col-12 d-flex align-items-center justify-content-start mb-2">
+                  <img src="assets/images/Editor1.png"
+                       alt="Description"
+                       class="img-fluid rounded-circle editor-photo me-2">
+                  <p class="mb-0">Samantha Reed</p>
+                </div>
+              
+                <!-- Second row: text -->
+                <div class="col-12">
+                  <p><b>About the Editor:</b>
+                    Samantha Reed is a lifestyle writer and home enthusiast based in Brooklyn. She has spent the last five years testing products for cleaner, calmer, and cozier living. When she is not rearranging her living room or trying new recipes she is probably sipping tea with her cat on her lap and a scented candle burning nearby.
+                  </p>
+                </div>
+                
+              </div>
+            </div>
           </div>
 
 
@@ -440,8 +459,6 @@
         </div>
       </div>
     </div>
-
-
 
     <!-- === Image Gallery Section (inside .page-wrapper) === -->
     <section class="image-gallery" aria-label="Product photos" style="display: none;">

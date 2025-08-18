@@ -1,84 +1,642 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Allergy Health Daily - Your comprehensive source for allergy information, tips, and health guidance">
-    <title>Allergy Health Daily - Home</title>
-    
-    <!-- Prevent FOUC (Flash of Unstyled Content) -->
-    <style>
-        body { visibility: hidden; opacity: 0; transition: opacity 0.3s ease; }
-        .no-js body { visibility: visible; opacity: 1; }
-    </style>
-    <script>document.documentElement.className += ' js';</script>
-    <script src="https://static.runconverge.com/pixels/3XNqiu.js" async></script>
-    <script>
-    window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
-    cvg({method:"track",eventName:"$page_load"});
-    cvg({ method: "link_domain", domain: "pacagen.com" });
-    </script>
-    
-    <!-- Load main JavaScript -->
-    <script src="assets/js/main.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlowThriveShine</title>
+
+  <style>
+    :root {
+      --header-height: 124px;
+    }
+
+    body {
+      padding-top: 60px; /* Prevent content from being hidden behind fixed header */
+    }
+
+    /* Fullscreen background section */
+    .hero {
+        position: relative;
+        min-height: 100vh;
+        background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1920&auto=format&fit=crop')
+                    center / cover no-repeat;
+    }
+
+    .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+    }
+
+    /* Floating card styling */
+    .hero-card {
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translateY(-50%);
+        height: 50%;
+        max-width: 420px;
+        background: #534034;
+        backdrop-filter: blur(6px);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        z-index: 1;
+        color: white; 
+        display: flex;
+        flex-direction: column;   /* stack vertically */
+    }
+
+    .hero-card hr {
+        margin: 0.75rem 0;
+        border-top: 2px solid #949494;
+        width: 100%;
+        opacity: 1;
+    }
+
+    .hero-card > * {
+        flex: 1;                  /* make all children expand equally */
+    }
+
+
+    /* Solid background section */
+    .features-section {
+        height: 60vh; 
+        background: #e9d1c5; /* pick any solid color you like */
+        align-items: center; /* vertical centering */
+        display: flex;       /* flex container */
+    }
+
+    /* Make images fully cover the square */
+    .img-cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1);
+        transition: transform 220ms ease, filter 220ms ease;
+    }
+
+    /* Subtle lift/zoom on hover & keyboard focus */
+    .feature-card {
+        transition: transform 220ms ease, box-shadow 220ms ease;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+    .feature-card:hover,
+    .feature-card:focus-visible {
+        transform: scale(1.1);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+    .feature-card:hover .img-cover,
+    .feature-card:focus-visible .img-cover {
+        transform: scale(1.1);
+        filter: saturate(1.03);
+    }
+
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+        .feature-card,
+        .img-cover {
+            transition: none;
+        }
+    }
+
+    /* Section background + spacing for the pinned title */
+    .links-section {
+        height: 70vh; 
+        background: #534034;             /* change to your brand color */
+        padding-top: 4.25rem;            /* keeps content clear of the pinned title */
+    }
+
+    /* Title pinned to top-left inside the section */
+    .links-section .section-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(2rem, 3vw + 1rem, 3rem);
+        font-weight: 700;
+        color: #ffffff; /* or your brand color */
+        letter-spacing: 1px;
+    }
+
+
+    /* Make card images cover nicely */
+    .img-cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Clickable card polish */
+    .link-card {
+        border: 0;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .link-card:hover,
+    .link-card:focus-visible {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+    }
+
+    .link-card .card-body {
+        padding: 0.9rem 1rem 1.05rem;
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        .link-card { transition: none; }
+    }
+
+    /* ================================ scroll bar ================================ */
+    .scroll-section {
+        height: 60vh; 
+        overflow: hidden;
+        background-color: #fde1d6;
+    }  
+
+    .scroll-section .section-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(1rem, 3vw + 1rem, 6rem);
+        font-weight: 700;
+        color: #534034; /* or your brand color */
+        letter-spacing: 1px;
+        margin-top: 1%;
+    }
+    .scroll-section hr {
+        margin: 2% 0 2% 0;
+        border-top: 2px solid #534034;
+        width: 100%;
+        opacity: 1;
+    }    
+
+    .scroll-wrapper {
+        position: relative;
+        width: 100%;
+        align-items: center; /* vertical centering */
+        display: flex;       /* flex container */
+    }
+
+    .scroll-container {
+    overflow: hidden;
+    white-space: nowrap;
+    }
+
+    .scroll-track {
+    display: inline-flex;
+    gap: 2rem;
+    }
+
+    .scroll-track img {
+    width: 400px;        /* Make width and height the same for perfect circles */
+    height: 400px;
+    object-fit: cover;   /* Keep the image centered and cropped */
+    flex-shrink: 0;
+    border-radius: 50%;  /* Makes them circular */
+    border: 0px;
+    display: block;
+    }
+
+
+    /* Arrows */
+    .scroll-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        background: rgba(0, 0, 0, 0.4);
+        color: white;
+        border: none;
+        font-size: 2rem;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .scroll-btn.left {
+        left: 0;
+    }
+
+    .scroll-btn.right {
+        right: 0;
+    }
+
+    .scroll-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    }
+
+    .gradient-section {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #667a3a, #c0ced2, #f4ac71); 
+    /* Replace with your colors */
+    color: white;
+    }
+
+    .logo {
+    width: 180px;         /* Adjust size */
+    height: auto;
+    margin-right: 20px;  /* Space between logo and content */
+    }
+
+    @media (max-width: 576.98px) {
+
+        body { padding-top: 56px; } /* smaller offset for small headers */
+
+        /* HERO */
+        .hero { 
+            min-height: 85vh; 
+            background-position: center;
+            display: flex;
+            align-items: center;         /* vertical */
+            justify-content: center;     /* horizontal */
+        }
+
+        .hero-card {
+            height: auto;
+            padding: 1rem;
+            left: calc(100% - 4rem)/2;
+            width: calc(100% - 4rem);
+            max-width: 520px;
+        }
+
+        /* Don’t force equal heights; let content size naturally */
+        .hero-card > * { flex: initial; }
+        .hero-card hr { margin: .5rem 0; }
+        .hero-card img {
+        width: 100%;
+        max-height: 220px;
+        object-fit: cover;
+        border-radius: .75rem;
+        }
+
+        /* FEATURES */
+        .features-section {
+        height: auto;         /* avoid fixed vh on phones */
+        padding: 2rem 0;
+        }
+        .feature-card {
+        border-radius: 1rem;
+        }
+        /* Avoid jumpy hover transforms on touch devices */
+        .feature-card:hover,
+        .feature-card:focus-visible {
+        transform: none;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+
+        /* LINKS (cards) */
+        .links-section {
+        height: auto;         /* avoid fixed vh */
+        padding-top: 3rem;
+        }
+        .links-section .section-title {
+        margin-left: 1rem;    /* ms-5 is a bit wide on phones */
+        }
+        .link-card .card-body {
+        padding: .75rem .9rem;
+        }
+
+        /* SCROLLER */
+        .scroll-section {
+        height: auto;
+        padding: 1.25rem 0 1.75rem;
+        }
+        .scroll-section .section-title {
+        margin-left: 1rem;
+        }
+        .scroll-section hr {
+        margin: .75rem 0 1rem;
+        }
+        .scroll-container {
+        overflow-x: auto;               /* allow swipe/drag on phones */
+        -webkit-overflow-scrolling: touch;
+        }
+        .scroll-track {
+        gap: 1rem;
+        padding: 0 1rem;
+        }
+        .scroll-track img {
+        width: 140px;
+        height: 140px;                  /* keep circles compact */
+        }
+        .scroll-btn {
+        font-size: 1.35rem;
+        padding: .25rem .5rem;
+        }
+
+        /* GRADIENT STRIP */
+        .gradient-section {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: .75rem;
+        padding: 1rem;
+        }
+        .gradient-section .logo {
+        width: 120px;
+        margin-right: 0;                /* was spacing for row layout */
+        }
+        
+    }
+
+
+        /* ---------- Tablet tweaks (≤ 768px) ---------- */
+    @media (max-width: 768.98px) {
+
+        .features-section { height: auto; }
+
+        .scroll-track img {
+        width: 180px;
+        height: 180px;
+        }
+
+        /* Slightly soften hover transforms on medium screens */
+        .feature-card:hover,
+        .feature-card:focus-visible {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+        }
+        }
+
+
+        /* ---------- Micro-UX polish ---------- */
+
+        /* Combine transforms so they don't overwrite each other */
+        .feature-card:hover,
+        .feature-card:focus-visible {
+        transform: translateY(-2px) scale(1.03);
+    }
+  </style>
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/nav-control.js" defer></script>
+
 </head>
+
 <body>
-    <main>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="row">
-                        <div class="col-12">
-                            <section class="featured-content">
-                                <h3>Latest Blog Posts</h3>
-                            </section>
-                        </div>
-                        <div class="col-12">
-                            <article>
-                                <h4><a href="blog/egg-powder-for-cat-allergies.html">Can Feeding Egg Powder Help With Cat Allergies?</a></h4>
-                                <p>Learn about the science behind egg powder and how it can help with cat allergies.</p>
-                            </article>
-                        </div>
-                        <div class="col-12"> 
-                            <article>
-                                <h4><a href="blog/worst-cats-for-allergies.html">Allergic to Cats? A List Of Cat Breeds You Should Avoid</a></h4>
-                                <p>A list of cat breeds that are the worst for allergies, including Persian, British Longhair, and Himalayan.</p>
-                            </article>
-                        </div>
-                        <div class="col-12"> 
-                            <article>
-                                <h4><a href="blog/how-to-help-allergy-fatigue.html">How To Help Allergy Fatigue</a></h4>
-                                <p>Practical tips and strategies to help you overcome allergy-induced fatigue, specifically focusing on cat allergies.</p>
-                            </article>
-                        </div>
-                        <div class="col-12"> 
-                            <article>
-                                <h4><a href="blog/understanding-fel-d-1.html">Understanding Fel d 1: The Cat Allergen</a></h4>
-                                <p>A deep dive into the science of Fel d 1, the primary cat allergen responsible for the majority of allergic responses to cats.</p>
-                            </article>
-                        </div>
-                        <div class="col-12"> 
-                            <article>
-                                <h4><a href="blog/dust-mite-allergies.html">Dust Mite Allergies: What You Need To Know</a></h4>
-                                <p>Learn about dust mite allergies, including what they are, how they affect you, and how to manage them.</p>
-                            </article>
-                        </div>                            
-                    </div>
+  
+    <!-- Fullscreen hero -->
+    <section class="hero">
+        <!-- Floating window -->
+        <div class="hero-card">
+            <!-- Top text -->
+            <h2 class="h5 mb-2">Welcome to Glow & Thrive</h2>
+
+            <hr>
+            <!-- Middle text + button -->
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <p class="mb-0">Join our journey for a shinier life</p>
+            </div>
+
+            <hr>
+
+            <!-- Image -->
+            <img src="assets/images/British-longhair.jpg" alt="Placeholder Image" class="img-fluid rounded">
+        </div>
+    </section>
+  
+    <!-- Features grid -->
+    <section class="features-section">
+        <div class="container py-5 py-md-6">
+            <div class="row justify-content-center g-5">
+            <!-- Card 1 -->
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+                <a href="https://GlowThriveShine.com/5-must-have.html" class="feature-card d-block rounded-pill overflow-hidden">
+                <div class="ratio" style="--bs-aspect-ratio: 150%;">
+                    <img
+                    src="assets/images/best-air-purifier.png"
+                    class="img-cover"
+                    alt="Feature one"
+                    loading="lazy"
+                    />
                 </div>
-                <div class="col-12 col-md-6">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="assets/images/img-dog-silent.webp" alt="Dog Silent" class="img-fluid">
-                        </div>    
-                        <div class="col-12">
-                            <h3>Everyone deals with allergies differently</h3>
-                            <p>Take our quiz to find out how you deal with allergies</p>
-                            <a href="quiz.html" class="btn btn-primary">Take the quiz</a>
-                        </div>                            
-                    </div>
+                </a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+                <a href="https://GlowThriveShine.com/keep-home-chic.html" class="feature-card d-block rounded-pill overflow-hidden">
+                <div class="ratio" style="--bs-aspect-ratio: 150%;">
+                    <img
+                    src="assets/images/Burmese-Cats-2.jpg"
+                    class="img-cover"
+                    alt="Feature two"
+                    loading="lazy"
+                    />
+                </div>
+                </a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+                <a href="https://GlowThriveShine.com/blog/DIY-Cat-Toys.html" class="feature-card d-block rounded-pill overflow-hidden">
+                <div class="ratio" style="--bs-aspect-ratio: 150%;">
+                    <img
+                    src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/Email_body_desktop_1200x1000_5_480x480.png?v=1755538416"
+                    class="img-cover"
+                    alt="Feature three"
+                    loading="lazy"
+                    />
+                </div>
+                </a>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Link cards section -->
+    <section class="links-section position-relative">
+        <!-- Title pinned top-left -->
+        <h2 class="section-title ms-5">Latest Posts</h2>
+    
+        <div class="container pt-5 pb-4">
+            <div class="row g-5 justify-content-center">
+                <!-- Card 1 -->
+                <div class="col-10 col-sm-6 col-md-4">
+                    <a href="https://GlowThriveShine.com/blog/How-to-Tackle-Cat-Allergies.html" class="card link-card h-100 text-decoration-none">
+                        <div class="ratio ratio-16x9">
+                        <img
+                            src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/Email_body_desktop_1200x1000_1_480x480.png?v=1755264810"
+                            class="card-img-top img-cover"
+                            alt="Product / Topic One"
+                            loading="lazy"
+                        />
+                        </div>
+                        <div class="card-body">
+                        <h3 class="h6 mb-1 text-body">How to tackle your allergy in Seattle?</h3>
+                        <p class="mb-0 text-body-secondary">Living in Seattle offers a unique blend of urban vibrancy and natural beauty, but it also presents challenges when it comes to maintaining a cat-friendly home. </p>
+                        </div>
+                    </a>
+                </div>
+        
+                <!-- Card 2 -->
+                <div class="col-10 col-sm-6 col-md-4">
+                    <a href="https://GlowThriveShine.com/blog/Navigating-Dog-Digestive-Issues.html" class="card link-card h-100 text-decoration-none">
+                        <div class="ratio ratio-16x9">
+                        <img
+                            src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/dog_digestion_issues_1024x1024.png?v=1752807852"
+                            class="card-img-top img-cover"
+                            alt="Product / Topic Two"
+                            loading="lazy"
+                        />
+                        </div>
+                        <div class="card-body">
+                        <h3 class="h6 mb-1 text-body">Navigate through dog digestive issues</h3>
+                        <p class="mb-0 text-body-secondary">Does your pet struggle with dog digestive issues? If you notice symptoms like vomiting and diarrhea after meals or see your pup experiencing dog feeding anxiety, you’re not alone. </p>
+                        </div>
+                    </a>
+                </div>
+        
+                <!-- Card 3 -->
+                <div class="col-10 col-sm-6 col-md-4">
+                    <a href="https://GlowThriveShine.com/blog/Why-Urgent-Foster-Care.html" class="card link-card h-100 text-decoration-none">
+                        <div class="ratio ratio-16x9">
+                        <img
+                            src="https://cdn.shopify.com/s/files/1/0814/8369/4394/files/urgent_foster_480x480.png?v=1752607542"
+                            class="card-img-top img-cover"
+                            alt="Product / Topic Three"
+                            loading="lazy"
+                        />
+                        </div>
+                        <div class="card-body">
+                        <h3 class="h6 mb-1 text-body">Why rescue matters more than ever?</h3>
+                        <p class="mb-0 text-body-secondary">Every day, animal shelters across the country face one heartbreaking truth: there are more pets in need than there are homes available.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <div class="scroll-section">
+        <h2 class="section-title ms-5">Follow us @GlowThriveShine </h2>
+        <hr>
+        <div class="scroll-wrapper">
+            <button class="scroll-btn left" id="scrollLeft">&#10094;</button>
+        
+            <div class="scroll-container" id="scrollContainer">
+            <div class="scroll-track" id="scrollTrack">
+                <img src="assets/images/bedsheets.png" alt="">
+                <img src="assets/images/Himalayan_cat.jpg" alt="">
+                <img src="assets/images/hepafilter.png" alt="">
+                <img src="assets/images/best-air-purifier.png" alt="">
+                <img src="assets/images/schnauzer.jpg" alt="">
+            </div>
+            </div>
+        
+            <button class="scroll-btn right" id="scrollRight">&#10095;</button>
+        </div>
+    </div>
+      
+      
+    <section class="gradient-section">
+        <img src="assets/images/GTSLogo.png" alt="Logo" class="logo">
+        <div class="content">
+            <!-- Your infinite scroll, text, or anything else goes here -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="three-col-section" style="display: none;">
+        <div class="col col1">
+          <p>Column 1</p>
+        </div>
+        <div class="col col2">
+          <p>Column 2</p>
+        </div>
+        <div class="col col3">
+          <p>Column 3</p>
+        </div>
+    </section>
+      
+
+
+  <script>    
+    // =========================================================== infinite scroll ======================================
+
+        const track = document.getElementById('scrollTrack');
+        const container = document.getElementById('scrollContainer');
+        const btnLeft = document.getElementById('scrollLeft');
+        const btnRight = document.getElementById('scrollRight');
+
+        let dir = 0;                 // -1 left, 0 stop, 1 right
+        const speed = 2;             // px per frame
+
+        // Keep count of originals so we can measure just one set
+        const originalChildren = [...track.children];
+        const originalCount = originalChildren.length;
+
+        // 1) Make sure originals are ready so width is stable
+        function waitForImages(nodes) {
+            const imgs = nodes.flatMap(n => [...n.querySelectorAll?.('img') || []]);
+            if (imgs.length === 0) return Promise.resolve();
+            return Promise.all(imgs.map(img => img.complete ? Promise.resolve() :
+            new Promise(res => img.addEventListener('load', res, {once:true}))));
+        }
+
+        // 2) Duplicate originals once for seamless loop
+        function duplicateChildren() {
+            const clones = originalChildren.map(n => n.cloneNode(true));
+            clones.forEach(c => track.appendChild(c));
+        }
+
+        // 3) Measure width of JUST the original set to avoid rounding issues
+        let halfWidth = 0;
+        function measureHalfWidth() {
+            let w = 0;
+            for (let i = 0; i < originalCount; i++) {
+            w += track.children[i].getBoundingClientRect().width;
+            // add gap between items (gap * count-1)
+            if (i < originalCount - 1) {
+                const gap = parseFloat(getComputedStyle(track).gap || '0');
+                w += gap;
+            }
+            }
+            halfWidth = Math.round(w);
+            // park the scroll slightly off 0 to avoid fractional rounding cases
+            container.scrollLeft = 0.5;
+        }
+
+        // 4) Wrap in [0, halfWidth)
+        function normalize(left) {
+            return ((left % halfWidth) + halfWidth) % halfWidth;
+        }
+
+        // 5) RAF loop (only runs while hovering)
+        let rafId = null;
+        function tick() {
+            container.scrollLeft = normalize(container.scrollLeft + dir * speed);
+            rafId = requestAnimationFrame(tick);
+        }
+        function ensureRunning(){ if (!rafId) rafId = requestAnimationFrame(tick); }
+        function stopIfIdle(){ if (dir === 0 && rafId) { cancelAnimationFrame(rafId); rafId = null; } }
+
+        // 6) Hover controls
+        btnLeft.addEventListener('mouseenter', () => { dir = -1; ensureRunning(); });
+        btnLeft.addEventListener('mouseleave', () => { dir = 0;  stopIfIdle(); });
+
+        btnRight.addEventListener('mouseenter', () => { dir = 1; ensureRunning(); });
+        btnRight.addEventListener('mouseleave', () => { dir = 0;  stopIfIdle(); });
+
+        // 7) Init sequence
+        (async function init(){
+            // Reserve layout with CSS sizes; still wait for image decodes for safety
+            await waitForImages(originalChildren);
+            duplicateChildren();
+            measureHalfWidth();
+        })();
+
+        // 8) Re-measure on resize (prevents jitter after responsive breakpoints)
+        const ro = new ResizeObserver(() => {
+            measureHalfWidth();
+        });
+        ro.observe(container);
+
+  </script>
+
 </body>
 </html>

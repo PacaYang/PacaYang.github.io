@@ -28,7 +28,7 @@
   /* Regular */
 @font-face {
     font-family: 'Times New Roman MT Std';
-    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd-Cond.woff2') format('woff2');
+    src: url('../fonts/times-new-roman-mt-std/TimesNewRomanMTStd-Cond.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -37,7 +37,7 @@
   /* Bold */
   @font-face {
     font-family: 'Times New Roman MT Std';
-    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd-BoldCond.woff2') format('woff2');
+    src: url('../fonts/times-new-roman-mt-std/TimesNewRomanMTStd-BoldCond.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -46,7 +46,7 @@
   /* Italic */
   @font-face {
     font-family: 'Times New Roman MT Std';
-    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd-CondIt.woff2') format('woff2');
+    src: url('../fonts/times-new-roman-mt-std/TimesNewRomanMTStd-CondIt.woff2') format('woff2');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -55,7 +55,7 @@
   /* Bold Italic */
   @font-face {
     font-family: 'Times New Roman MT Std';
-    src: url('/fonts/times-new-roman-mt-std/TimesNewRomanMTStd-BoldIt.woff2') format('woff2');
+    src: url('../fonts/times-new-roman-mt-std/TimesNewRomanMTStd-BoldIt.woff2') format('woff2');
     font-weight: 700;
     font-style: italic;
     font-display: swap;
@@ -86,10 +86,11 @@ main{
     margin: 0 0 0 0;
     padding: 0;
     background: #534034;
+    display: flex;
 }
 
 .navbar-brand img {
-    height: 100px;
+    height: 180px;
 }
 
 img{
@@ -113,57 +114,11 @@ img{
     gap: 10px;
 }
 
-/* Header and navigation */
-header {
-    background-color: #056839;
-    color: white;
-    padding: 1rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-nav {
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav h1 {
-    font-size: 1.8rem;
-}
-
 #logo {
     height: 40px;
     width: auto;
 }
 
-nav a img {
-    height: 40px;
-    width: auto;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: #a8c5e8;
-}
-
-nav a.active {
-    color: #a8c5e8;
-    font-weight: bold;
-}
 
 #logo {
     width: 150px;
@@ -261,11 +216,9 @@ section h3 {
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: white;
+    background-color: #fde1d6;
     text-align: center;
     padding: 2rem 0;
-    margin-top: 3rem;
     position: relative;
     bottom: 0;
     width: 100%;
@@ -273,15 +226,9 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    nav {
-        /* flex-direction: column; */
-        gap: 1rem;
+    .navbar-brand img {
+        height: 120px;
     }
-    
-    nav ul {
-        gap: 1rem;
-    }
-    
     .hero h2 {
         font-size: 2rem;
     }
