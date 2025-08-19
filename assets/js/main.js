@@ -82,14 +82,14 @@ function loadStylesheets(assetPath) {
 function insertNavigation(pageType = 'root', currentPage = '') {
     // Determine the correct paths based on page type
     const homePath = pageType === 'blog' ? '../index.html' : 'index.html';
-    const logoPath = pageType === 'blog' ? 'assets/images/GTSLogo.png' : 'assets/images/logo.png';
+    const logoPath = pageType === 'blog' ? '../assets/images/GTSLogo.png' : 'assets/images/GTSLogo.png';
   
     // Define the header HTML (now actually using the paths)
     const navHTML = `
         <nav id="mainHeader" class="navbar navbar-expand-lg border-bottom fixed-top">
             <div class="container justify-content-center">
                 <a class="navbar-brand mx-auto" href="https://glowthriveshine.com">
-                    <img src="assets/images/GTSLogo.png" alt="Logo">
+                    <img src="${logoPath}" alt="Logo">
                 </a>
             </div>
         </nav>
