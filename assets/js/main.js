@@ -127,6 +127,90 @@ function insertFooter(pageType = 'root') {
     document.body.insertAdjacentHTML('beforeend', footerHTML);
 }
 
+// used for sharing buttons
+document.addEventListener('DOMContentLoaded', function () {
+  const pageUrl = window.location.href;
+  const encodedUrl = encodeURIComponent(pageUrl);
+  const pageTitle = document.title || 'Check this out';
+  const encodedTitle = encodeURIComponent(pageTitle);
+  const defaultText = encodeURIComponent('Check this out!');
+
+  // Optional: Use native share on mobile if available
+  function tryNativeShare(textLabel) {
+    if (navigator.share) {
+      navigator.share({ title: pageTitle, text: textLabel || pageTitle, url: pageUrl })
+        .catch(() => {}); // user canceled or not supported by target app
+      return true;
+    }
+    return false;
+  }
+
+  // Assign URLs / handlers
+  document.querySelectorAll('[aria-label]').forEach(el => {
+    const type = el.getAttribute('aria-label');
+
+    if (type === 'X') {
+      // X (Twitter)
+      const shareUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${defaultText}`;
+      el.setAttribute('href', shareUrl);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+      el.addEventListener('click', e => {
+        // try native share first
+        if (tryNativeShare('Check this out!')) { e.preventDefault(); }
+      });
+    }
+
+    if (type === 'LinkedIn') {
+      // LinkedIn
+      const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      el.setAttribute('href', shareUrl);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+      el.addEventListener('click', e => {
+        if (tryNativeShare()) { e.preventDefault(); }
+      });
+    }
+
+    if (type === 'Email') {
+      // Email
+      const subject = encodedTitle;
+      const body = encodeURIComponent(`${pageTitle}\n\n${pageUrl}`);
+      const mailto = `mailto:?subject=${subject}&body=${body}`;
+      el.setAttribute('href', mailto);
+      // mailto should open the client; no native share override
+    }
+
+    if (type === 'Instagram') {
+      // No web share URL for Instagram posts. Best we can do is copy the link.
+      const shareUrl = `https://www.instagram.com/glowthriveshine/`;
+      el.setAttribute('href', shareUrl);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+      el.addEventListener('click', e => {
+        if (tryNativeShare()) { e.preventDefault(); }
+      });
+    }
+  });
+});
+
+// copy button function
+const copyBtn = document.getElementById("copyBtn");
+const popup = document.getElementById("popup");
+
+copyBtn.addEventListener("click", () => {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    // Show popup
+    popup.classList.add("show");
+
+    // Hide after 2 seconds
+    setTimeout(() => {
+      popup.classList.remove("show");
+    }, 2000);
+  });
+});
+
 // Load components immediately when script loads (before DOM ready)
 (function() {
     // Check if we're in a blog subdirectory
