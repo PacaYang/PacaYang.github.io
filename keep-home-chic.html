@@ -574,6 +574,35 @@
         });
       });
     })();
+  
+    function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return '';
+        }
+
+    function f(baseUrl) {
+            cvg({method: "track", eventName:"GlowThriveShine Pacagen Click"});
+            
+            // Get cookie values
+            let uid = getCookie('__cvg_uid');
+            let sid = getCookie('__cvg_sid');
+            
+            // Build the final URL with parameters
+            let finalUrl = baseUrl;
+            if (uid || sid) {
+                finalUrl += (finalUrl.includes('?') ? '&' : '?');
+                if (uid) finalUrl += `__cvg_uid=${encodeURIComponent(uid)}`;
+                if (uid && sid) finalUrl += '&';
+                if (sid) finalUrl += `__cvg_sid=${encodeURIComponent(sid)}`;
+            }
+            
+            // Redirect after 200ms delay
+            setTimeout(() => {
+                window.location.href = finalUrl;
+            }, 200);
+        }
   </script>
   
 </html>
