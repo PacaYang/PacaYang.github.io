@@ -127,6 +127,82 @@ function insertFooter(pageType = 'root') {
     document.body.insertAdjacentHTML('beforeend', footerHTML);
 }
 
+// Load components immediately when script loads (before DOM ready)
+(function() {
+    // Check if we're in a blog subdirectory
+    const isInBlog = window.location.pathname.includes('/blog/');
+    const pageType = isInBlog ? 'blog' : 'root';
+    
+    // Determine current page for active state
+    let currentPage = '';
+    if (window.location.pathname.includes('/blog/')) {
+        currentPage = 'blog';
+    } else if (window.location.pathname.includes('quiz.html')) {
+        currentPage = 'quiz';
+    }
+    
+    // Insert head elements immediately
+    insertHeadElements(pageType);
+    
+    // Insert navigation and footer when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!document.querySelector('nav')) {
+                insertNavigation(pageType, currentPage);
+            }
+            if (!document.querySelector('footer')) {
+                insertFooter(pageType);
+            }
+        });
+    } else {
+        // DOM already loaded
+        if (!document.querySelector('nav')) {
+            insertNavigation(pageType, currentPage);
+        }
+        if (!document.querySelector('footer')) {
+            insertFooter(pageType);
+        }
+    }
+})();
+
+
+// Wait for DOM to be fully loaded for additional functionality
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Smooth scrolling for internal links
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+
+
+// control header to hide when scroll down
+
+let lastScrollTop = 0;
+const header = document.getElementById("mainHeader");
+
+window.addEventListener("scroll", function () {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (scrollTop > lastScrollTop) {
+    // Scrolling down
+    header.style.top = "-100%";
+  } else {
+    // Scrolling up
+    header.style.top = "0";
+  }
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Avoid negative values
+}, false);
+
 // used for sharing buttons
 document.addEventListener('DOMContentLoaded', function () {
   const pageUrl = window.location.href;
@@ -210,79 +286,3 @@ copyBtn.addEventListener("click", () => {
     }, 2000);
   });
 });
-
-// Load components immediately when script loads (before DOM ready)
-(function() {
-    // Check if we're in a blog subdirectory
-    const isInBlog = window.location.pathname.includes('/blog/');
-    const pageType = isInBlog ? 'blog' : 'root';
-    
-    // Determine current page for active state
-    let currentPage = '';
-    if (window.location.pathname.includes('/blog/')) {
-        currentPage = 'blog';
-    } else if (window.location.pathname.includes('quiz.html')) {
-        currentPage = 'quiz';
-    }
-    
-    // Insert head elements immediately
-    insertHeadElements(pageType);
-    
-    // Insert navigation and footer when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            if (!document.querySelector('nav')) {
-                insertNavigation(pageType, currentPage);
-            }
-            if (!document.querySelector('footer')) {
-                insertFooter(pageType);
-            }
-        });
-    } else {
-        // DOM already loaded
-        if (!document.querySelector('nav')) {
-            insertNavigation(pageType, currentPage);
-        }
-        if (!document.querySelector('footer')) {
-            insertFooter(pageType);
-        }
-    }
-})();
-
-
-// Wait for DOM to be fully loaded for additional functionality
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Smooth scrolling for internal links
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-});
-
-
-// control header to hide when scroll down
-
-let lastScrollTop = 0;
-const header = document.getElementById("mainHeader");
-
-window.addEventListener("scroll", function () {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  if (scrollTop > lastScrollTop) {
-    // Scrolling down
-    header.style.top = "-100%";
-  } else {
-    // Scrolling up
-    header.style.top = "0";
-  }
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Avoid negative values
-}, false);
